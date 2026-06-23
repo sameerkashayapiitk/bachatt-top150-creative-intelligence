@@ -83,6 +83,8 @@ h1 em{font-style:italic;color:var(--teal)}
 .ad .play span{width:48px;height:48px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-size:18px}
 .ad .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
 .ad .ti{font-weight:600;font-size:15px;line-height:1.25;letter-spacing:-.01em}
+.ad .adno{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut)}
+.ad .adno b{color:var(--teal-deep)}
 .ad .labs{display:flex;flex-wrap:wrap;gap:5px}
 .lab{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:var(--paper-2);color:var(--teal-deep)}
 .lab.emo{color:#fff}
@@ -156,6 +158,7 @@ function card(x){
   var cac=x.cac>0?'₹'+fmt(x.cac):'—';
   return '<div class="ad"><div class="thumb-wrap" style="position:relative">'+thumb+'<div class="rk">#'+x.rank+'</div>'+play+'</div>'+
   '<div class="body"><div class="ti">'+esc(x.title)+'</div>'+
+  '<div class="adno">Ad no. <b>'+(x.id?esc(x.id):'—')+'</b> · spend rank <b>#'+x.rank+'</b></div>'+
   '<div class="labs"><span class="lab emo" style="background:'+c+'">'+esc(x.emo)+'</span><span class="lab hook">'+esc(x.hook)+'</span><span class="lab">'+esc(x.theme)+'</span><span class="lab lang">'+esc(x.lang)+'</span></div>'+
   '<div class="fh"><i>frame hook:</i> '+(esc(x.frame_hook)||'—')+'</div>'+ev+
   '<div class="mets"><span>₹'+fmt(x.spend)+'</span><span>CTR <b>'+x.ctr+'%</b></span><span>CPI <b>₹'+x.cpi+'</b></span><span>CAC <b>'+cac+'</b></span><span>stop <b>'+x.stop+'/10</b></span><span>conf '+x.conf+'</span></div>'+
