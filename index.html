@@ -110,12 +110,26 @@ h1 em{font-style:italic;color:var(--teal)}
 .fbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 #count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut)}
 .clearbtn{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--coral);background:transparent;color:var(--coral);cursor:pointer}
+.defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:20px}
+.defcard{background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:13px;padding:16px 18px;transition:transform .2s,border-color .2s}
+.defcard:hover{transform:translateY(-3px);border-color:var(--teal)}
+.defcard .dterm{font-weight:600;font-size:15.5px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.defcard .dterm .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px}
+.tag.data{background:#dbeee6;color:var(--teal-deep)}
+.tag.judge{background:#fbe9d8;color:var(--coral)}
+.defcard .dunit{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut)}
+.defcard .dformula{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal-deep);background:var(--paper-2);padding:5px 9px;border-radius:6px;margin:9px 0 6px;display:inline-block}
+.defcard .dmean{font-size:13.5px;color:var(--ink);line-height:1.5}
+.defcard .dnote{font-size:12px;color:var(--coral);margin-top:9px;display:flex;gap:6px}
+.taxrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.taxchip{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 10px;border-radius:7px;background:var(--paper-2);color:var(--teal-deep);display:inline-flex;align-items:center;gap:6px}
+.taxchip .sw{width:9px;height:9px;border-radius:3px;flex:none}
 footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;letter-spacing:.04em}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
 @media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
-</style></head><body><div class="field" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="progress" id="prog"></div><div class="cursor-ring" id="cring"></div><div class="cursor-dot" id="cdot"></div><nav class="topnav"><div class="navwrap"><a class="navbrand" href="index.html"><span class="navlogo">ब</span><span class="bt">Bachatt · Top 150</span></a><div class="navlinks"><a href="#scoreboard">Scoreboard</a><a href="#greed-ambition"><span class="sw" style="background:#c9981f"></span>Greed/Ambition</a><a href="#aspiration"><span class="sw" style="background:#0d6e5f"></span>Aspiration</a><a href="#hope-optimism"><span class="sw" style="background:#2f8f6f"></span>Hope/Optimism</a><a class="navcta" href="explore.html">Explore all 141 &rarr;</a></div></div></nav><div class="wrap"><header>
+</style></head><body><div class="field" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="progress" id="prog"></div><div class="cursor-ring" id="cring"></div><div class="cursor-dot" id="cdot"></div><nav class="topnav"><div class="navwrap"><a class="navbrand" href="index.html"><span class="navlogo">ब</span><span class="bt">Bachatt · Top 150</span></a><div class="navlinks"><a href="#scoreboard">Scoreboard</a><a href="#greed-ambition"><span class="sw" style="background:#c9981f"></span>Greed/Ambition</a><a href="#aspiration"><span class="sw" style="background:#0d6e5f"></span>Aspiration</a><a href="#hope-optimism"><span class="sw" style="background:#2f8f6f"></span>Hope/Optimism</a><a class="" href="definitions.html">Definitions</a><a class="navcta" href="explore.html">Explore all 141 &rarr;</a></div></div></nav><div class="wrap"><header>
 <div class="brandrow"><div class="logo">ब</div><div><div class="brandname">Bachatt</div><div class="brandtag">Bachatt Karega Bharat</div></div></div>
 <div class="eyebrow">Creative Intelligence · Top 150 by spend</div>
 <h1>What emotion is <em>actually</em> buying our installs.</h1>
