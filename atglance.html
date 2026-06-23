@@ -80,14 +80,17 @@ h1 em{font-style:italic;color:var(--teal)}
 .ad:hover{transform:translateY(-4px);box-shadow:0 14px 34px -16px rgba(8,69,59,.42);border-color:var(--teal)}
 .ad .thumb{position:relative;aspect-ratio:1/1;background:var(--paper-2) center/cover no-repeat;border-bottom:1px solid var(--line)}
 /* list view */
-.ads.listview{grid-template-columns:1fr;gap:9px}
-.ads.listview .ad{flex-direction:row;align-items:stretch}
-.ads.listview .ad .thumb-wrap{width:120px;flex:none}
-.ads.listview .ad .thumb{aspect-ratio:1/1;height:100%;border-bottom:none;border-right:1px solid var(--line)}
-.ads.listview .ad .body{padding:11px 14px;gap:6px}
+.ads.listview{grid-template-columns:1fr;gap:8px}
+.ads.listview .ad{flex-direction:row;align-items:center}
+.ads.listview .ad .thumb-wrap{width:84px;height:84px;flex:none;align-self:center;margin:10px;border-radius:9px;overflow:hidden}
+.ads.listview .ad .thumb{aspect-ratio:auto;width:100%;height:100%;border-bottom:none}
+.ads.listview .ad .rk{top:4px;left:4px;font-size:9.5px;padding:2px 5px}
+.ads.listview .ad .body{padding:10px 14px 10px 0;gap:5px;justify-content:center}
+.ads.listview .ad .ti{font-size:14px}
 .ads.listview .ad .fh,.ads.listview .ad .ev{display:none}
-.ads.listview .ad .mets{margin-top:auto}
-@media(max-width:560px){.ads.listview .ad .thumb-wrap{width:84px}}
+.ads.listview .ad .mets{margin-top:4px;border-top:none;padding-top:0}
+.ads.listview .ad .cta{margin-top:4px}
+@media(max-width:560px){.ads.listview .ad .thumb-wrap{width:64px;height:64px;margin:8px}.ads.listview .ad .cta{display:none}}
 .viewtog{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
 .viewtog button{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 12px;background:var(--card);color:var(--mut);border:none;cursor:pointer;transition:.15s}
 .viewtog button.on{background:var(--teal);color:#fff}
