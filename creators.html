@@ -1,0 +1,894 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Creators Dashboard · Bachatt 1–650</title><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230d6e5f'/><circle cx='16' cy='16' r='6' fill='%23e0a526'/></svg>"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+:root{--ink:#11152e;--paper:#eef1fa;--paper-2:#e1e6f5;--teal:#3b3ac9;--teal-deep:#2a2aa0;--gold:#e0a526;--coral:#e2603f;--line:#c7cde4;--mut:#5b6489;--card:#ffffff;--nav:rgba(232,236,250,.92)}
+[data-theme="dark"]{--ink:#e9ecf8;--paper:#0c0f1e;--paper-2:#191e34;--teal:#7188ff;--teal-deep:#a3b3ff;--gold:#efb94a;--coral:#ff7d5e;--line:#2a3155;--mut:#98a3c8;--card:#161b2e;--nav:rgba(14,18,36,.9)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+@media (hover:hover) and (pointer:fine){a,button,*{cursor:none !important}}
+body{background:var(--paper);color:var(--ink);font-family:'Space Grotesk',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+.field{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.b1{width:46vw;height:46vw;left:-12vw;top:-10vw;background:radial-gradient(circle,rgba(13,110,95,.22),transparent 70%)}
+.b2{width:42vw;height:42vw;right:-12vw;bottom:-12vw;background:radial-gradient(circle,rgba(224,165,38,.20),transparent 70%)}
+.b3{width:30vw;height:30vw;right:18vw;top:24vh;background:radial-gradient(circle,rgba(226,96,63,.12),transparent 70%)}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(8vw,6vh)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-7vw,-5vh)}}
+@keyframes d3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-4vw,8vh) scale(1.12)}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:multiply}
+.cursor-dot{width:7px;height:7px;background:var(--coral);transform:translate(-50%,-50%)}
+.cursor-ring{width:34px;height:34px;border:1.5px solid var(--teal);transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,background .25s}
+body.hovering .cursor-ring{width:54px;height:54px;border-color:var(--coral);background:rgba(226,96,63,.06)}
+@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+@media (prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring{display:none}*{cursor:auto !important}}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:9998;background:linear-gradient(90deg,var(--teal),var(--gold),var(--coral))}
+/* nav */
+.topnav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid #bcccb4}
+.topnav::after{content:"";display:block;height:2px;background:linear-gradient(90deg,#f59e3c 0 33.3%,#f7f3ea 33.3% 66.6%,#1f9e4f 66.6% 100%);opacity:.65}
+.navwrap{max-width:1180px;margin:0 auto;padding:11px 28px;display:flex;align-items:center;gap:18px;justify-content:center;flex-wrap:wrap}
+.navbrand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--teal-deep);font-family:'Space Grotesk',sans-serif;font-size:15px;letter-spacing:.01em;font-weight:700;white-space:nowrap}
+.navbrand .gn{color:#1f9e4f}
+.navlogo{width:30px;height:30px;border-radius:8px;background:var(--teal);color:var(--paper);display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:17px;flex:none}
+.navlinks{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center}
+.navlinks a{text-decoration:none;color:var(--teal-deep);font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;letter-spacing:.01em;padding:8px 14px;border-radius:8px;transition:background .15s,color .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.navlinks a:hover{background:var(--paper-2);color:var(--teal-deep)}
+.navlinks a .sw{width:9px;height:9px;border-radius:3px;flex:none}
+.navlinks a.navcta{background:var(--teal);color:var(--paper)}
+.navlinks a.navcta:hover{background:var(--coral);color:#fff}
+.navlinks a.on{background:var(--paper-2);color:var(--teal-deep)}
+@media(max-width:820px){.navbrand .bt{display:none}.navlinks a{font-size:11px;padding:6px 8px}}
+header{padding:46px 0 24px}
+.brandrow{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.logo{width:38px;height:38px;border-radius:9px;background:var(--teal);color:var(--paper);display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:22px;flex:none}
+.brandname{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep)}
+.brandtag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut);letter-spacing:.05em}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:18px}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(40px,7vw,80px);line-height:.98;letter-spacing:-.02em;max-width:15ch}
+h1 em{font-style:italic;color:var(--teal)}
+.lede{margin-top:24px;max-width:60ch;font-size:18px;color:var(--mut)}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--teal-deep);transition:transform .2s,background .2s;text-decoration:none}
+.chip:hover{transform:translateY(-2px);background:#fff;border-color:var(--teal)}
+.chip b{color:var(--coral)}
+.rule{height:1px;background:var(--line);margin:42px 0}
+.track{padding:8px 0 24px;scroll-margin-top:74px}
+.trackhead{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+.tracknum{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(38px,5vw,58px);color:var(--gold);line-height:1;flex:none}
+.tracktitle{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(24px,3.6vw,36px);letter-spacing:-.01em}
+.tracksub{margin:6px 0 0;color:var(--mut);max-width:64ch;font-size:16px}
+.tracksub b{color:var(--ink);font-weight:600}
+.board{margin-top:28px;display:grid;gap:10px}
+.brow{display:grid;grid-template-columns:210px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
+.brow:hover{transform:translateX(4px);border-color:var(--teal)}
+.brow.t3{background:var(--card)}
+.brow .en{font-family:'Space Grotesk';font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;color:var(--ink)}
+.swatch{width:11px;height:11px;border-radius:3px;flex:none}
+.brow .barwrap{position:relative;height:26px;border-radius:6px;background:var(--paper-2);overflow:hidden}
+.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;padding-left:10px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.brow .mets{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);text-align:right;white-space:nowrap}
+.brow .mets b{color:var(--teal-deep)}
+.brow .go{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--coral);margin-left:6px}
+.rankbadge{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);width:26px;text-align:center;font-size:18px}
+.themes{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.theme{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s}
+.theme:hover{transform:translateY(-3px);border-color:var(--teal)}
+.theme .tn{font-weight:600;font-size:14px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.theme .tn .ar{color:var(--coral);font-family:'JetBrains Mono',monospace;font-size:12px}
+.theme .tb{height:7px;border-radius:4px;background:var(--paper-2);overflow:hidden;margin-bottom:6px}
+.theme .tb i{display:block;height:100%;border-radius:4px}
+.theme .tm{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mut)}
+.ads{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.ad{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column;content-visibility:auto;contain-intrinsic-size:340px 430px}
+.ad:hover{transform:translateY(-4px);box-shadow:0 14px 34px -16px rgba(8,69,59,.42);border-color:var(--teal)}
+.ad .thumb{position:relative;aspect-ratio:4/3;background:var(--paper-2) center/cover no-repeat;border-bottom:1px solid var(--line)}
+.ad .thumb.ph{display:grid;place-items:center;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:11px}
+.ad .rk{position:absolute;top:8px;left:8px;background:var(--teal-deep);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:3px 8px;border-radius:7px}
+.ad .play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.2s;background:rgba(8,69,59,.32)}
+.ad .thumb-wrap:hover .play{opacity:1}
+.ad .play span{width:48px;height:48px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-size:18px}
+.ad .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.ad .ti{font-weight:600;font-size:15px;line-height:1.25;letter-spacing:-.01em}
+.cstretch{position:absolute;inset:0;z-index:1;cursor:pointer}
+.ad:hover{cursor:pointer}.ad:hover .ti{color:var(--teal-deep)}
+.ad .cta{position:relative;z-index:2}
+.ad .adno{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut)}
+.ad .adno b{color:var(--teal-deep)}
+.ad .labs{display:flex;flex-wrap:wrap;gap:5px}
+.lab{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 8px;border-radius:6px;background:var(--paper-2);color:var(--teal-deep)}
+.lab.emo{color:#fff}
+.lab.hook{background:#fbe9d8;color:var(--coral)}
+.lab.lang{background:transparent;border:1px solid var(--line);color:var(--mut)}
+.lab.fmt{background:#efe7d2;color:#7a5e1f;border:1px solid #e0d3aa}
+.ad .fh{font-size:13px;color:var(--ink)}
+.ad .fh i{font-family:'Fraunces',serif;color:var(--gold);font-style:italic}
+.ad .ev{font-size:12.5px;color:var(--mut);border-left:2px solid var(--line);padding-left:9px}
+.ad .mets{display:flex;flex-wrap:wrap;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mut);margin-top:auto;padding-top:6px;border-top:1px dashed var(--line)}
+.ad .mets b{color:var(--teal-deep)}
+.ad .cta{margin-top:8px;display:flex;gap:7px;flex-wrap:wrap}
+.ad .cta a{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:var(--paper);background:var(--teal);padding:8px 12px;border-radius:8px;transition:background .2s,transform .15s}
+.ad .cta a:hover{transform:translateY(-1px)}
+.ad .cta a.drv{background:var(--teal)}.ad .cta a.drv:hover{background:var(--teal-deep)}
+.ad .cta a.ig{background:linear-gradient(60deg,#c9981f,#e2603f)}.ad .cta a.ig:hover{filter:brightness(1.08)}
+.ad .cta a.fb{background:#3a5a98}
+.ad .cta a.dis{background:var(--paper-2);color:var(--mut);pointer-events:none}
+.filters{margin:22px 0 10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters input{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);min-width:240px;outline:none}
+.filters select{font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--teal-deep);outline:none;cursor:pointer;max-width:260px}
+.filters select:focus{border-color:var(--teal)}
+.filters input:focus{border-color:var(--teal)}
+.fchip{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer;transition:.15s;user-select:none}
+.fchip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fglabel{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);margin-right:2px;width:74px;flex:none}
+.fbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+#count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut)}
+.clearbtn{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--coral);background:transparent;color:var(--coral);cursor:pointer}
+.defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:20px}
+.defcard{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;transition:transform .2s,border-color .2s}
+.defcard:hover{transform:translateY(-3px);border-color:var(--teal)}
+.defcard .dterm{font-weight:600;font-size:15.5px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.defcard .dterm .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px}
+.tag.data{background:#dbeee6;color:var(--teal-deep)}
+.tag.judge{background:#fbe9d8;color:var(--coral)}
+.defcard .dunit{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut)}
+.defcard .dformula{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal-deep);background:var(--paper-2);padding:5px 9px;border-radius:6px;margin:9px 0 6px;display:inline-block}
+.defcard .dmean{font-size:13.5px;color:var(--ink);line-height:1.5}
+.defcard .dnote{font-size:12px;color:var(--coral);margin-top:9px;display:flex;gap:6px}
+.taxrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.taxchip{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 10px;border-radius:7px;background:var(--paper-2);color:var(--teal-deep);display:inline-flex;align-items:center;gap:6px}
+.taxchip .sw{width:9px;height:9px;border-radius:3px;flex:none}
+footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;letter-spacing:.04em}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
+.navlogoimg{height:24px;width:auto;background:#fff;padding:4px 7px;border-radius:7px;display:block}.navtoggle{font-size:15px;line-height:1;background:transparent;border:1px solid var(--line);color:var(--teal-deep);width:34px;height:34px;border-radius:8px;cursor:pointer;display:inline-grid;place-items:center}.navtoggle:hover{background:var(--paper-2)}.herologo{height:42px;width:auto;background:#fff;padding:5px 9px;border-radius:10px;display:block}[data-theme=dark] .lab.fmt{background:#2a2540;color:#e6c878;border-color:#3a3358}[data-theme=dark] .lab.hook{background:#3a2630;color:#ffb59c}[data-theme=dark] .topnav::after{opacity:.5}[data-theme=dark] .cursor-dot,[data-theme=dark] .cursor-ring{mix-blend-mode:normal}
+</style></head><body><script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light")}catch(e){}</script><div class="field" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="progress" id="prog"></div><div class="cursor-ring" id="cring"></div><div class="cursor-dot" id="cdot"></div><nav class="topnav"><div class="navwrap"><a class="navbrand" href="index.html"><img class="navlogoimg" src="logo.png" alt="Bachatt"><span class="bt">Karega <span class="gn">Bharat</span></span></a><div class="navlinks"><a href="index.html#scoreboard">Scoreboard</a><a class="" href="atglance.html">At a Glance</a><a class="" href="top10.html">Top 10</a><a class="on" href="creators.html">Creators</a><a class="" href="definitions.html">Definitions</a><a class="navcta" href="explore.html">Explore all creatives &rarr;</a><button class="navtoggle" id="themeToggle" aria-label="toggle dark mode" title="dark mode">🌙</button></div></div></nav><style>
+.crcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px 22px;margin-bottom:16px;transition:border-color .2s,transform .18s}
+.crcard:hover{border-color:var(--teal);transform:translateY(-2px);cursor:pointer}
+.crcard .cstretch{position:absolute;inset:0;z-index:1}
+.crhead,.crvids{position:relative;z-index:2}
+.crcard:hover{border-color:var(--teal)}
+.crhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.crrank{font-family:'Fraunces',serif;font-style:italic;font-size:26px;color:var(--gold);width:34px;flex:none;text-align:center}
+.crname{font-family:'Fraunces',serif;font-weight:600;font-size:22px;text-decoration:none;color:var(--ink);border-bottom:2px solid transparent;transition:border-color .15s}
+.crname:hover{border-color:var(--teal)}
+.crlangs{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut);display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.crlangs span{border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.crall{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:var(--teal-deep);border:1px solid var(--line);padding:8px 13px;border-radius:8px;transition:.15s}
+.crall:hover{background:var(--paper-2);border-color:var(--teal)}
+.crig{font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:#fff;background:linear-gradient(60deg,#c9981f,#e2603f);padding:8px 13px;border-radius:8px}
+.crstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:16px}
+.crstat{background:var(--paper-2);border-radius:10px;padding:11px 13px}
+.crstat .v{font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--teal-deep)}
+.crstat .l{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.crvids{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}
+.crvid{display:flex;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px;align-items:center}
+.crvthumb{width:50px;height:50px;border-radius:7px;background:var(--paper-2) center/cover no-repeat;flex:none}
+.crvti{font-size:12.5px;font-weight:600;line-height:1.2}
+.crvm{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);margin-top:3px}
+.crvm a{color:var(--teal);text-decoration:none;margin-right:7px}
+.crsub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut)}
+</style>
+<div class="wrap"><header style="padding:34px 0 6px">
+<div class="eyebrow">Partnership creators</div>
+<h1 style="font-size:clamp(32px,5vw,52px)">Who's <em>delivering</em>, and at what cost.</h1>
+<p class="lede" style="margin-top:14px">Every partnership creator in this set — the CAC they delivered, their spend, engagement, and top collab videos. Ranked by spend behind their creatives.</p><p class="crsub" style="margin-top:14px">79 creators · ₹16,852,865 partnership spend · CAC = creator spend ÷ purchases they drove.</p></header><section class="track"><div class="crcard"><a class="cstretch" href="explore.html?creator=Kiran%20Paste" aria-label="all videos by Kiran Paste" title="all videos by Kiran Paste"></a><div class="crhead"><div class="crrank">1</div>
+<div><a class="crname" href="explore.html?creator=Kiran%20Paste">Kiran Paste</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Kiran%20Paste">see all 10 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DQ99FE-AI21/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹2,639,072</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹420</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.615%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹35</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">10</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=19" style="flex:none"><div class="crvthumb" style="background-image:url('media/r19/t000s.jpg')"></div></a><div><a href="video.html?rank=19" style="text-decoration:none;color:inherit"><div class="crvti">Husband broke phone | Wife tells about</div></a><div class="crvm">₹664,434 · CAC ₹380 · <a href="https://drive.google.com/file/d/1m8Ns3xPvtAnfDm2F7wY47twhnEBhl1_f/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DQ99FE-AI21/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=36" style="flex:none"><div class="crvthumb" style="background-image:url('media/r36/t000s.jpg')"></div></a><div><a href="video.html?rank=36" style="text-decoration:none;color:inherit"><div class="crvti">TV is broken, where will we get the mo</div></a><div class="crvm">₹497,005 · CAC ₹428 · <a href="https://drive.google.com/file/d/1fwgga2CnFGi8aP5b0CcdCFTfeSblNlSw/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWG5ndggDsA/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=47" style="flex:none"><div class="crvthumb" style="background-image:url('media/r47/t000s.jpg')"></div></a><div><a href="video.html?rank=47" style="text-decoration:none;color:inherit"><div class="crvti">Wife says that the kids’ school vacati</div></a><div class="crvm">₹360,063 · CAC ₹457 · <a href="https://drive.google.com/file/d/1GzjQK0HYd64gqrAGk5EnFNp7Ma9TrOSv/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DSpeoevAIaH/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=54" style="flex:none"><div class="crvthumb" style="background-image:url('media/r54/t000s.jpg')"></div></a><div><a href="video.html?rank=54" style="text-decoration:none;color:inherit"><div class="crvti">Hospital Emergency with wife&#x27;s Father</div></a><div class="crvm">₹335,760 · CAC ₹451 · <a href="https://drive.google.com/file/d/1Qf1i9gpbHkLzgwJuFRc3oFjPRv6wUzDw/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWG4zIigLim/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=The3Tags" aria-label="all videos by The3Tags" title="all videos by The3Tags"></a><div class="crhead"><div class="crrank">2</div>
+<div><a class="crname" href="explore.html?creator=The3Tags">The3Tags</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=The3Tags">see all 7 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWRQ20HAL9P/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹1,799,250</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹371</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.408%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹39</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">7</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=6" style="flex:none"><div class="crvthumb" style="background-image:url('media/r6/t000s.jpg')"></div></a><div><a href="video.html?rank=6" style="text-decoration:none;color:inherit"><div class="crvti">Bachatt App Ki Saving</div></a><div class="crvm">₹1,407,892 · CAC ₹356 · <a href="https://drive.google.com/file/d/1BDi2sShzoPtvkxVcZBhsfoN56hy1nGzX/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWRQ20HAL9P/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=113" style="flex:none"><div class="crvthumb" style="background-image:url('media/r113/t000s.jpg')"></div></a><div><a href="video.html?rank=113" style="text-decoration:none;color:inherit"><div class="crvti">Thokwale ka Udhaar Ho Gaya</div></a><div class="crvm">₹163,533 · CAC ₹424 · <a href="https://drive.google.com/file/d/1rcwKsex41rqbMU4FWYkkjCv2ic6xJKyN/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYl7r8QAFmS/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=160" style="flex:none"><div class="crvthumb" style="background-image:url('media/r160/t000s.jpg')"></div></a><div><a href="video.html?rank=160" style="text-decoration:none;color:inherit"><div class="crvti">Bada Beta vs Chota Beta</div></a><div class="crvm">₹114,968 · CAC ₹416 · <a href="https://drive.google.com/file/d/10gCLwVIzfXpmB8XeI14nfOubuiyci-sb/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYl7b5eAL10/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=265" style="flex:none"><div class="crvthumb" style="background-image:url('media/r265/t000s.jpg')"></div></a><div><a href="video.html?rank=265" style="text-decoration:none;color:inherit"><div class="crvti">Behan Ki Shadi-Nalayak Beta</div></a><div class="crvm">₹62,523 · CAC ₹474 · <a href="https://drive.google.com/file/d/1GL0xQoA-5FQcp0cn4dE4rgwPrEIgsL0j/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZJ0WejgEW-/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Vaadirat" aria-label="all videos by Vaadirat" title="all videos by Vaadirat"></a><div class="crhead"><div class="crrank">3</div>
+<div><a class="crname" href="explore.html?creator=Vaadirat">Vaadirat</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Vaadirat">see all 5 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DT4jdcegFCC/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹1,297,614</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹360</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.526%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹42</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">5</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=17" style="flex:none"><div class="crvthumb" style="background-image:url('media/r17/t000s.jpg')"></div></a><div><a href="video.html?rank=17" style="text-decoration:none;color:inherit"><div class="crvti">One Maggie please, man at restaurant</div></a><div class="crvm">₹707,642 · CAC ₹315 · <a href="https://drive.google.com/file/d/104venKP1IF_gzPaP8FB2pLV1SZfR4bs_/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DT4jdcegFCC/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=78" style="flex:none"><div class="crvthumb" style="background-image:url('media/r78/t000s.jpg')"></div></a><div><a href="video.html?rank=78" style="text-decoration:none;color:inherit"><div class="crvti">Kanjoos cab driver, taught the passeng</div></a><div class="crvm">₹221,677 · CAC ₹488 · <a href="https://drive.google.com/file/d/10TVTJoZ8C321gjLHe50PV31f4U8mne4j/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DTNUJ3uANas/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=85" style="flex:none"><div class="crvthumb" style="background-image:url('media/r85/t000s.jpg')"></div></a><div><a href="video.html?rank=85" style="text-decoration:none;color:inherit"><div class="crvti">Didn&#x27;t have enough money to buy second</div></a><div class="crvm">₹206,461 · CAC ₹334 · <a href="https://drive.google.com/file/d/1UMCY3jYBLjvN3dad2Q6dqC4aXVIZQ52p/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DScS-97gFid/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=156" style="flex:none"><div class="crvthumb" style="background-image:url('media/r156/t000s.jpg')"></div></a><div><a href="video.html?rank=156" style="text-decoration:none;color:inherit"><div class="crvti">Special Valentine&#x27;s Day Gifts for Girl</div></a><div class="crvm">₹118,469 · CAC ₹634 · <a href="https://drive.google.com/file/d/182-sarR6D3jrL2iQzc7wCQMkD7IOn2tg/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUXi9kUgNug/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ganesh" aria-label="all videos by Ganesh" title="all videos by Ganesh"></a><div class="crhead"><div class="crrank">4</div>
+<div><a class="crname" href="explore.html?creator=Ganesh">Ganesh</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Ganesh">see all 10 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZFiaDbAJyt/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹999,808</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹388</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.479%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹46</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">10</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=84" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=84" style="text-decoration:none;color:inherit"><div class="crvti">Kanjoos Friend | Expansion in Telugu</div></a><div class="crvm">₹208,909 · CAC ₹351 · <a href="https://drive.google.com/file/d/15BuqmXLT9P11-Q1kLUoJHawNMfuUfuc5/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZFiaDbAJyt/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=87" style="flex:none"><div class="crvthumb" style="background-image:url('media/r87/t000s.jpg')"></div></a><div><a href="video.html?rank=87" style="text-decoration:none;color:inherit"><div class="crvti">Salary is gone in just 3 days</div></a><div class="crvm">₹203,027 · CAC ₹416 · <a href="https://drive.google.com/file/d/1i02QsKbTr3Q8PiVVA9J88eq-vOPdOnW5/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVOscmADER/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=139" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=139" style="text-decoration:none;color:inherit"><div class="crvti">Bhikhari Ne kharidi New Bike I Expansi</div></a><div class="crvm">₹132,507 · CAC ₹354 · <a href="https://drive.google.com/file/d/1HtbYx_0MpvuKphL-2W7uAyqAMvVHn1Wj/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYrzactABS4/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=173" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=173" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic | Expansion</div></a><div class="crvm">₹107,605 · CAC ₹334 · <a href="https://drive.google.com/file/d/1NMD4TiTQymcyom7btfTmnDfka58vhqOn/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZFiNH2gOSQ/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sarthak" aria-label="all videos by Sarthak" title="all videos by Sarthak"></a><div class="crhead"><div class="crrank">5</div>
+<div><a class="crname" href="explore.html?creator=Sarthak">Sarthak</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Sarthak">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVGaDYEgI07/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹708,944</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹418</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.433%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹46</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=21" style="flex:none"><div class="crvthumb" style="background-image:url('media/r21/t000s.jpg')"></div></a><div><a href="video.html?rank=21" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹625,104 · CAC ₹406 · <a href="https://drive.google.com/file/d/1lNUe0IF67eyQ8ZCnyurlKCXVh1o1fKHx/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVGaDYEgI07/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=217" style="flex:none"><div class="crvthumb" style="background-image:url('media/r217/t000s.jpg')"></div></a><div><a href="video.html?rank=217" style="text-decoration:none;color:inherit"><div class="crvti">Taught my Kharchila Dost how to save</div></a><div class="crvm">₹83,840 · CAC ₹531 · <a href="https://drive.google.com/file/d/1wGGXtTXWWqmatmReUWa-ViTeUNbavPpl/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWRS8txALq0/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sudip" aria-label="all videos by Sudip" title="all videos by Sudip"></a><div class="crhead"><div class="crrank">6</div>
+<div><a class="crname" href="explore.html?creator=Sudip">Sudip</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Sudip">see all 11 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DSEwnTEgHxZ/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹652,815</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹449</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.826%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹28</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">11</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=67" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=67" style="text-decoration:none;color:inherit"><div class="crvti">Missed train, asked for lift, found hi</div></a><div class="crvm">₹257,635 · CAC ₹354 · <a href="https://www.instagram.com/p/DSEwnTEgHxZ/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=220" style="flex:none"><div class="crvthumb" style="background-image:url('media/r220/t000s.jpg')"></div></a><div><a href="video.html?rank=220" style="text-decoration:none;color:inherit"><div class="crvti">Men took friend&#x27;s bike, but got stolen</div></a><div class="crvm">₹81,846 · CAC ₹502 · <a href="https://www.instagram.com/p/DTr51VAANaA/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=231" style="flex:none"><div class="crvthumb" style="background-image:url('media/r231/t000s.jpg')"></div></a><div><a href="video.html?rank=231" style="text-decoration:none;color:inherit"><div class="crvti">Girlfriend Ki Smart Saving</div></a><div class="crvm">₹75,323 · CAC ₹628 · <a href="https://www.instagram.com/p/DYmmo9eAKkw/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=291" style="flex:none"><div class="crvthumb" style="background-image:url('media/r291/t000s.jpg')"></div></a><div><a href="video.html?rank=291" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic | Expansion</div></a><div class="crvm">₹55,147 · CAC ₹574 · <a href="https://www.instagram.com/p/DZDSppMgC1S/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Rajashree" aria-label="all videos by Rajashree" title="all videos by Rajashree"></a><div class="crhead"><div class="crrank">7</div>
+<div><a class="crname" href="explore.html?creator=Rajashree">Rajashree</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Rajashree">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYOikB-gOkV/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹566,532</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹414</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.941%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹38</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=29" style="flex:none"><div class="crvthumb" style="background-image:url('media/r29/t000s.jpg')"></div></a><div><a href="video.html?rank=29" style="text-decoration:none;color:inherit"><div class="crvti">Kharchili Girlfriend/Wife I Expansion </div></a><div class="crvm">₹566,532 · CAC ₹414 · <a href="https://drive.google.com/file/d/1tR6FPMCjWKi5qL0lXiJNTe-S-ZhXYzRe/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYOikB-gOkV/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shaksham" aria-label="all videos by Shaksham" title="all videos by Shaksham"></a><div class="crhead"><div class="crrank">8</div>
+<div><a class="crname" href="explore.html?creator=Shaksham">Shaksham</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Shaksham">see all 6 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWROJgcgJNK/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹473,763</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹399</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.478%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹52</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">6</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=97" style="flex:none"><div class="crvthumb" style="background-image:url('media/r97/t000s.jpg')"></div></a><div><a href="video.html?rank=97" style="text-decoration:none;color:inherit"><div class="crvti">Mere Kanjoos Dost ki saving</div></a><div class="crvm">₹189,203 · CAC ₹384 · <a href="https://drive.google.com/file/d/1zzmPy12JuCf-AYr1277aH3YOTPbTK-Hr/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWROJgcgJNK/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=123" style="flex:none"><div class="crvthumb" style="background-image:url('media/r123/t000s.jpg')"></div></a><div><a href="video.html?rank=123" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic || Expansio</div></a><div class="crvm">₹153,882 · CAC ₹371 · <a href="https://drive.google.com/file/d/1lpgKwcxWmnEGq21KIgfzXAOFG8G-SRbs/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_4_yQAHBk/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=196" style="flex:none"><div class="crvthumb" style="background-image:url('media/r196/t000s.jpg')"></div></a><div><a href="video.html?rank=196" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security || E</div></a><div class="crvm">₹95,855 · CAC ₹369 · <a href="https://drive.google.com/file/d/11K-uFNoRrxs1vw8K7gn9fMYiyeD9h7pS/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_5EV6gETv/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=610" style="flex:none"><div class="crvthumb" style="background-image:url('media/r610/t000s.jpg')"></div></a><div><a href="video.html?rank=610" style="text-decoration:none;color:inherit"><div class="crvti">Price Tag Wala Kankoos Dost</div></a><div class="crvm">₹11,828 · CAC ₹1,478 · <a href="https://drive.google.com/file/d/1s2LNr2MG9Qm0Aa2YnFsSTrpyPjkWJ_QN/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXE01-gCuB/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Rampad%20Team" aria-label="all videos by Rampad Team" title="all videos by Rampad Team"></a><div class="crhead"><div class="crrank">9</div>
+<div><a class="crname" href="explore.html?creator=Rampad%20Team">Rampad Team</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Rampad%20Team">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYUl23sAGRG/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹441,264</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹466</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.574%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹38</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=44" style="flex:none"><div class="crvthumb" style="background-image:url('media/r44/t000s.jpg')"></div></a><div><a href="video.html?rank=44" style="text-decoration:none;color:inherit"><div class="crvti">Bhikhari Ne kharidi New Car I Expansio</div></a><div class="crvm">₹429,791 · CAC ₹459 · <a href="https://drive.google.com/file/d/1rEcalbXXuFRy-3XajGMDMHKgKkMf3sZT/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYUl23sAGRG/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=630" style="flex:none"><div class="crvthumb" style="background-image:url('media/r630/t000s.jpg')"></div></a><div><a href="video.html?rank=630" style="text-decoration:none;color:inherit"><div class="crvti">My Friend New Saving Tricks || Expansi</div></a><div class="crvm">₹11,473 · CAC ₹1,043 · <a href="https://drive.google.com/file/d/1ImlSgkczSlBUf-08ki0DSiChyisxVNDu/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_5FPpAAjx/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Nutan" aria-label="all videos by Nutan" title="all videos by Nutan"></a><div class="crhead"><div class="crrank">10</div>
+<div><a class="crname" href="explore.html?creator=Nutan">Nutan</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Nutan">see all 5 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVGYh8tgEc7/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹408,804</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹459</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.632%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹46</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">5</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=138" style="flex:none"><div class="crvthumb" style="background-image:url('media/r138/t000s.jpg')"></div></a><div><a href="video.html?rank=138" style="text-decoration:none;color:inherit"><div class="crvti">My boyfriend downloaded the Bachatt Ap</div></a><div class="crvm">₹133,000 · CAC ₹403 · <a href="https://drive.google.com/file/d/1hlzFSEXjUC2Bmbdop_Ke6yG23Kf0o0C_/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVGYh8tgEc7/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=177" style="flex:none"><div class="crvthumb" style="background-image:url('media/r177/t000s.jpg')"></div></a><div><a href="video.html?rank=177" style="text-decoration:none;color:inherit"><div class="crvti">Girlfriend gave money to her drunk boy</div></a><div class="crvm">₹104,675 · CAC ₹461 · <a href="https://drive.google.com/file/d/1ud2S5z2lKcVzdZ0V2BC03Pltx7-Pc4wM/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVGRdulgHpc/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=233" style="flex:none"><div class="crvthumb" style="background-image:url('media/r233/t000s.jpg')"></div></a><div><a href="video.html?rank=233" style="text-decoration:none;color:inherit"><div class="crvti">Valentine&#x27;s Day Special for my Boyfrie</div></a><div class="crvm">₹74,131 · CAC ₹526 · <a href="https://drive.google.com/file/d/1v93R4sYtGaLUlRjs9z41OYXF_UeE9RIF/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUkxgZHgKSW/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=239" style="flex:none"><div class="crvthumb" style="background-image:url('media/r239/t000s.jpg')"></div></a><div><a href="video.html?rank=239" style="text-decoration:none;color:inherit"><div class="crvti">Girlfriend taught her boyfriend how to</div></a><div class="crvm">₹72,458 · CAC ₹439 · <a href="https://drive.google.com/file/d/1cgM58E_ktf56Y-KqM55u0u9UhMzPbWVS/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUYNYHsABKC/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Cherry" aria-label="all videos by Cherry" title="all videos by Cherry"></a><div class="crhead"><div class="crrank">11</div>
+<div><a class="crname" href="explore.html?creator=Cherry">Cherry</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Cherry">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCdBtuALz_/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹406,320</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹400</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.582%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹37</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=89" style="flex:none"><div class="crvthumb" style="background-image:url('media/r89/t000s.jpg')"></div></a><div><a href="video.html?rank=89" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic || Expansio</div></a><div class="crvm">₹201,461 · CAC ₹352 · <a href="https://drive.google.com/file/d/1EQoLbnsRU763SXBKC2WF0YgCJNCvLE40/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCdBtuALz_/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=192" style="flex:none"><div class="crvthumb" style="background-image:url('media/r192/t000s.jpg')"></div></a><div><a href="video.html?rank=192" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car Father/Son I Expansio</div></a><div class="crvm">₹96,782 · CAC ₹472 · <a href="https://drive.google.com/file/d/1lqubnKlNvccOGtIjW7C8Z9VmCtEWbKCm/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCcNJTAGEp/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=193" style="flex:none"><div class="crvthumb" style="background-image:url('media/r193/t000s.jpg')"></div></a><div><a href="video.html?rank=193" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security I Ex</div></a><div class="crvm">₹96,767 · CAC ₹446 · <a href="https://drive.google.com/file/d/152ylJiiI1flms0PyvbI7qhODfeU5UU-q/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYHgX9igCSs/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=633" style="flex:none"><div class="crvthumb" style="background-image:url('media/r633/t000s.jpg')"></div></a><div><a href="video.html?rank=633" style="text-decoration:none;color:inherit"><div class="crvti">Brother &amp; Sister had a bet || Expansio</div></a><div class="crvm">₹11,310 · CAC ₹514 · <a href="https://drive.google.com/file/d/1bQUnHWoe5khBsQpjW70Kw4N5mCnDmZUn/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCdBIpADF_/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Bhavesh" aria-label="all videos by Bhavesh" title="all videos by Bhavesh"></a><div class="crhead"><div class="crrank">12</div>
+<div><a class="crname" href="explore.html?creator=Bhavesh">Bhavesh</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Bhavesh">see all 5 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DRMv81VAEDo/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹401,263</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹448</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.419%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹38</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">5</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=116" style="flex:none"><div class="crvthumb" style="background-image:url('media/r116/t000s.jpg')"></div></a><div><a href="video.html?rank=116" style="text-decoration:none;color:inherit"><div class="crvti">Bhavesh Demo Video</div></a><div class="crvm">₹161,699 · CAC ₹401 · <a href="https://drive.google.com/file/d/1Lxt1AQli_Yp9gRtJod6iJT3ixrSqpHVX/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DRMv81VAEDo/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=127" style="flex:none"><div class="crvthumb" style="background-image:url('media/r127/t000s.jpg')"></div></a><div><a href="video.html?rank=127" style="text-decoration:none;color:inherit"><div class="crvti">Bhavesh, while hiding his iPhone from </div></a><div class="crvm">₹142,810 · CAC ₹418 · <a href="https://drive.google.com/file/d/1gL37rZ8nyqC6GaPAxr6OOxHWc5UQuuIl/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUku4TuAJ-N/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=311" style="flex:none"><div class="crvthumb" style="background-image:url('media/r311/t000s.jpg')"></div></a><div><a href="video.html?rank=311" style="text-decoration:none;color:inherit"><div class="crvti">Party Bills vs. Mom’s Savings</div></a><div class="crvm">₹48,446 · CAC ₹655 · <a href="https://drive.google.com/file/d/1rvQlR8yi8SmdBEQkSUQMvzDLaD5LxNit/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWG5LNsgBFa/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=393" style="flex:none"><div class="crvthumb" style="background-image:url('media/r393/t000s.jpg')"></div></a><div><a href="video.html?rank=393" style="text-decoration:none;color:inherit"><div class="crvti">Bhavesh’s lighter was found by his mot</div></a><div class="crvm">₹27,681 · CAC ₹839 · <a href="https://drive.google.com/file/d/1PotKfrHyCVsctSeCEg9h57N7KHZBuCix/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUktBLZgHNf/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Abhijeet" aria-label="all videos by Abhijeet" title="all videos by Abhijeet"></a><div class="crhead"><div class="crrank">13</div>
+<div><a class="crname" href="explore.html?creator=Abhijeet">Abhijeet</a><div class="crlangs"><span>Malayalam</span></div></div>
+<a class="crall" href="explore.html?creator=Abhijeet">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYr1YRXALJc/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹357,658</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹458</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.830%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹38</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=131" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=131" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹137,112 · CAC ₹470 · <a href="https://www.instagram.com/p/DYr1YRXALJc/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=182" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=182" style="text-decoration:none;color:inherit"><div class="crvti">Salary is gone in just 3 days I Expans</div></a><div class="crvm">₹101,730 · CAC ₹656 · <a href="https://www.instagram.com/p/DYPd2T6gFuH/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=235" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=235" style="text-decoration:none;color:inherit"><div class="crvti">Kanjoos Friend I Expansion in Malayala</div></a><div class="crvm">₹73,467 · CAC ₹309 · <a href="https://www.instagram.com/p/DZICFPMgLdt/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=321" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=321" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic</div></a><div class="crvm">₹45,349 · CAC ₹468 · <a href="https://www.instagram.com/p/DX_6ET9gCbD/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Abhishek" aria-label="all videos by Abhishek" title="all videos by Abhishek"></a><div class="crhead"><div class="crrank">14</div>
+<div><a class="crname" href="explore.html?creator=Abhishek">Abhishek</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Abhishek">see all 3 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DY4XzxwAKBR/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹354,779</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹402</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.485%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹33</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">3</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=73" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=73" style="text-decoration:none;color:inherit"><div class="crvti">Kanjoos friend | Expansion in Kannada</div></a><div class="crvm">₹237,664 · CAC ₹399 · <a href="https://www.instagram.com/p/DY4XzxwAKBR/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=256" style="flex:none"><div class="crvthumb" style="background-image:url('media/r256/t000s.jpg')"></div></a><div><a href="video.html?rank=256" style="text-decoration:none;color:inherit"><div class="crvti">Love Proposal I Expansion in Kannada</div></a><div class="crvm">₹66,150 · CAC ₹472 · <a href="https://www.instagram.com/p/DZDX1gggMEX/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=304" style="flex:none"><div class="crvthumb" style="background-image:url('media/r304/t000s.jpg')"></div></a><div><a href="video.html?rank=304" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security I Ex</div></a><div class="crvm">₹50,965 · CAC ₹349 · <a href="https://www.instagram.com/p/DZW_x6HgMw4/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shahnoor" aria-label="all videos by Shahnoor" title="all videos by Shahnoor"></a><div class="crhead"><div class="crrank">15</div>
+<div><a class="crname" href="explore.html?creator=Shahnoor">Shahnoor</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Shahnoor">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWTnFsbgFkV/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹347,724</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹389</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.378%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹48</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=51" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=51" style="text-decoration:none;color:inherit"><div class="crvti">My friend suddenly Became rich</div></a><div class="crvm">₹347,724 · CAC ₹389 · <a href="https://www.instagram.com/p/DWTnFsbgFkV/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ajay" aria-label="all videos by Ajay" title="all videos by Ajay"></a><div class="crhead"><div class="crrank">16</div>
+<div><a class="crname" href="explore.html?creator=Ajay">Ajay</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Ajay">see all 7 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYXCKgoAGBr/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹281,139</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹560</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.427%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹47</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">7</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=178" style="flex:none"><div class="crvthumb" style="background-image:url('media/r178/t000s.jpg')"></div></a><div><a href="video.html?rank=178" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security || E</div></a><div class="crvm">₹103,958 · CAC ₹562 · <a href="https://drive.google.com/file/d/1LsRpzpiGs895S6qWg1TN9zPCLiPvV2ZC/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYXCKgoAGBr/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=274" style="flex:none"><div class="crvthumb" style="background-image:url('media/r274/t000s.jpg')"></div></a><div><a href="video.html?rank=274" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic | Expansion</div></a><div class="crvm">₹59,752 · CAC ₹564 · <a href="https://drive.google.com/file/d/1F5SOKZ_EBWdeEtxmJgSSs0_coc65c0-d/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZDWe2ngDQw/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=297" style="flex:none"><div class="crvthumb" style="background-image:url('media/r297/t000s.jpg')"></div></a><div><a href="video.html?rank=297" style="text-decoration:none;color:inherit"><div class="crvti">My Son Smart Saving I Expansion in Mar</div></a><div class="crvm">₹53,076 · CAC ₹590 · <a href="https://drive.google.com/file/d/1PZjICKzHoqWaAaOPEj7seuKvzc0PjytA/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DXwfOFJAIiF/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=426" style="flex:none"><div class="crvthumb" style="background-image:url('media/r426/t000s.jpg')"></div></a><div><a href="video.html?rank=426" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹23,994 · CAC ₹436 · <a href="https://drive.google.com/file/d/1SDolVP9WatlKLViQFzgL7pkx15XzeGuf/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYXBLyPgDhf/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=MMtech" aria-label="all videos by MMtech" title="all videos by MMtech"></a><div class="crhead"><div class="crrank">17</div>
+<div><a class="crname" href="explore.html?creator=MMtech">MMtech</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=MMtech">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWVKt9rAKFf/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹259,313</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹411</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.589%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹45</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=197" style="flex:none"><div class="crvthumb" style="background-image:url('media/r197/t000s.jpg')"></div></a><div><a href="video.html?rank=197" style="text-decoration:none;color:inherit"><div class="crvti">Brother &amp; Sister had a bet, and the br</div></a><div class="crvm">₹95,310 · CAC ₹456 · <a href="https://drive.google.com/file/d/1azjeGzGdWt17pSDiOITGj2IdBzuApRi5/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVKt9rAKFf/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=219" style="flex:none"><div class="crvthumb" style="background-image:url('media/r219/t000s.jpg')"></div></a><div><a href="video.html?rank=219" style="text-decoration:none;color:inherit"><div class="crvti">Valentine&#x27;s Day Special Gift for Boyfr</div></a><div class="crvm">₹81,853 · CAC ₹318 · <a href="https://drive.google.com/file/d/1GmLHmPesKrUduELgKyj3pc-IUOsps1V9/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUnOA1RgDbj/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=245" style="flex:none"><div class="crvthumb" style="background-image:url('media/r245/t000s.jpg')"></div></a><div><a href="video.html?rank=245" style="text-decoration:none;color:inherit"><div class="crvti">Friend wasn’t returning my 5000 rupees</div></a><div class="crvm">₹69,741 · CAC ₹471 · <a href="https://drive.google.com/file/d/12ImTAExx8-REOIqSdFhohDmi-RcNbTOH/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DUasq3dgOBY/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=574" style="flex:none"><div class="crvthumb" style="background-image:url('media/r574/t000s.jpg')"></div></a><div><a href="video.html?rank=574" style="text-decoration:none;color:inherit"><div class="crvti">My uncle suffered a major loss in farm</div></a><div class="crvm">₹12,409 · CAC ₹776 · <a href="https://drive.google.com/file/d/1LnK_y3_Gdwgw3yrt2tOrHHBVI6YyXt89/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVLcCZgEgi/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Vicky" aria-label="all videos by Vicky" title="all videos by Vicky"></a><div class="crhead"><div class="crrank">18</div>
+<div><a class="crname" href="explore.html?creator=Vicky">Vicky</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Vicky">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DTFzzVSALUe/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹249,018</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹364</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.614%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹36</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=70" style="flex:none"><div class="crvthumb" style="background-image:url('media/r70/t000s.jpg')"></div></a><div><a href="video.html?rank=70" style="text-decoration:none;color:inherit"><div class="crvti">Vicky and his friend Helped his Coach </div></a><div class="crvm">₹249,018 · CAC ₹364 · <a href="https://drive.google.com/file/d/1q5q9J4FIw7zQl7FMnYbOF0pcbfBzr7TM/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DTFzzVSALUe/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Nanagowda" aria-label="all videos by Nanagowda" title="all videos by Nanagowda"></a><div class="crhead"><div class="crrank">19</div>
+<div><a class="crname" href="explore.html?creator=Nanagowda">Nanagowda</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Nanagowda">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DU47YvegLiz/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹227,689</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹550</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.378%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹63</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=168" style="flex:none"><div class="crvthumb" style="background-image:url('media/r168/t000s.jpg')"></div></a><div><a href="video.html?rank=168" style="text-decoration:none;color:inherit"><div class="crvti">My friend became rich by saving smartl</div></a><div class="crvm">₹111,377 · CAC ₹533 · <a href="https://www.instagram.com/p/DU47YvegLiz/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=258" style="flex:none"><div class="crvthumb" style="background-image:url('media/r258/t000s.jpg')"></div></a><div><a href="video.html?rank=258" style="text-decoration:none;color:inherit"><div class="crvti">Wife beats drunk Husband, son suggests</div></a><div class="crvm">₹64,712 · CAC ₹498 · <a href="https://www.instagram.com/p/DSXdkPnAGNW/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=386" style="flex:none"><div class="crvthumb" style="background-image:url('media/r386/t000s.jpg')"></div></a><div><a href="video.html?rank=386" style="text-decoration:none;color:inherit"><div class="crvti">Mom advised her daughter to start savi</div></a><div class="crvm">₹29,349 · CAC ₹699 · <a href="https://www.instagram.com/p/DVI62UTAFeM/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=436" style="flex:none"><div class="crvthumb" style="background-image:url('media/r436/t000s.jpg')"></div></a><div><a href="video.html?rank=436" style="text-decoration:none;color:inherit"><div class="crvti">Taught my wife how to save on the Bach</div></a><div class="crvm">₹22,251 · CAC ₹674 · <a href="https://www.instagram.com/p/DWTeskSgI7x/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sushmita" aria-label="all videos by Sushmita" title="all videos by Sushmita"></a><div class="crhead"><div class="crrank">20</div>
+<div><a class="crname" href="explore.html?creator=Sushmita">Sushmita</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Sushmita">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYzc2AAgHmq/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹211,455</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹426</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.532%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹37</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=82" style="flex:none"><div class="crvthumb" style="background-image:url('media/r82/t000s.jpg')"></div></a><div><a href="video.html?rank=82" style="text-decoration:none;color:inherit"><div class="crvti">Shadi ka Rishta Bachatt App Ki Saving </div></a><div class="crvm">₹211,455 · CAC ₹426 · <a href="https://drive.google.com/file/d/1Cwvv1PAw2B5-9In30buYIIdavl2U5Dor/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYzc2AAgHmq/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Darshan" aria-label="all videos by Darshan" title="all videos by Darshan"></a><div class="crhead"><div class="crrank">21</div>
+<div><a class="crname" href="explore.html?creator=Darshan">Darshan</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Darshan">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCcMTjgJpF/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹208,588</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹582</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.394%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹46</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=118" style="flex:none"><div class="crvthumb" style="background-image:url('media/r118/t000s.jpg')"></div></a><div><a href="video.html?rank=118" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car I Expansion in Tamil</div></a><div class="crvm">₹158,126 · CAC ₹513 · <a href="https://drive.google.com/file/d/14dNS8wi7kpgCcIaX8G-uw9sF6ugolGa6/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCcMTjgJpF/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=307" style="flex:none"><div class="crvthumb" style="background-image:url('media/r307/t000s.jpg')"></div></a><div><a href="video.html?rank=307" style="text-decoration:none;color:inherit"><div class="crvti">Tricks to get paid every bill by him</div></a><div class="crvm">₹50,462 · CAC ₹1,009 · <a href="https://drive.google.com/file/d/1N870SbiJKoFWeH-r1jy39EYpZCAtbSlS/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVqobVBAKaK/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Priyanka" aria-label="all videos by Priyanka" title="all videos by Priyanka"></a><div class="crhead"><div class="crrank">22</div>
+<div><a class="crname" href="explore.html?creator=Priyanka">Priyanka</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Priyanka">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DY4XNaHgFRs/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹184,569</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹423</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.528%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹41</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=148" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=148" style="text-decoration:none;color:inherit"><div class="crvti">Kharchili Wife I Expansion in Kannada</div></a><div class="crvm">₹123,840 · CAC ₹402 · <a href="https://www.instagram.com/p/DY4XNaHgFRs/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=270" style="flex:none"><div class="crvthumb" style="background-image:url('media/r270/t000s.jpg')"></div></a><div><a href="video.html?rank=270" style="text-decoration:none;color:inherit"><div class="crvti">Second Hand nahi Nayi Car I Expansion </div></a><div class="crvm">₹60,729 · CAC ₹474 · <a href="https://www.instagram.com/p/DYmo8W5AJp5/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Aditya" aria-label="all videos by Aditya" title="all videos by Aditya"></a><div class="crhead"><div class="crrank">23</div>
+<div><a class="crname" href="explore.html?creator=Aditya">Aditya</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Aditya">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVqTBsjAMOb/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹171,586</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹462</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.983%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹28</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=111" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=111" style="text-decoration:none;color:inherit"><div class="crvti">Bhikhari ki Smart Saving</div></a><div class="crvm">₹171,586 · CAC ₹462 · <a href="https://www.instagram.com/p/DVqTBsjAMOb/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Kushal" aria-label="all videos by Kushal" title="all videos by Kushal"></a><div class="crhead"><div class="crrank">24</div>
+<div><a class="crname" href="explore.html?creator=Kushal">Kushal</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Kushal">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCepJcgA1g/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹168,613</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹436</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.568%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹58</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=147" style="flex:none"><div class="crvthumb" style="background-image:url('media/r147/t000s.jpg')"></div></a><div><a href="video.html?rank=147" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic || Expansio</div></a><div class="crvm">₹124,988 · CAC ₹454 · <a href="https://drive.google.com/file/d/1FNTXpyJdtFPV330sWF9_e-M6Y3QvTfHR/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCepJcgA1g/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=326" style="flex:none"><div class="crvthumb" style="background-image:url('media/r326/t000s.jpg')"></div></a><div><a href="video.html?rank=326" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security || E</div></a><div class="crvm">₹43,625 · CAC ₹390 · <a href="https://drive.google.com/file/d/1lE3tO2OxToKwvXTryPghOomu4r8VSjti/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCgbS0AGY8/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Wasi" aria-label="all videos by Wasi" title="all videos by Wasi"></a><div class="crhead"><div class="crrank">25</div>
+<div><a class="crname" href="explore.html?creator=Wasi">Wasi</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Wasi">see all 3 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCY1hjgMMp/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹164,950</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹478</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.423%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹56</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">3</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=225" style="flex:none"><div class="crvthumb" style="background-image:url('media/r225/t000s.jpg')"></div></a><div><a href="video.html?rank=225" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic</div></a><div class="crvm">₹79,446 · CAC ₹540 · <a href="https://www.instagram.com/p/DYCY1hjgMMp/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=273" style="flex:none"><div class="crvthumb" style="background-image:url('media/r273/t000s.jpg')"></div></a><div><a href="video.html?rank=273" style="text-decoration:none;color:inherit"><div class="crvti">Bhikhari Ne kharidi New Bike | Expansi</div></a><div class="crvm">₹59,941 · CAC ₹379 · <a href="https://www.instagram.com/p/DY1KNDZgC1l/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=406" style="flex:none"><div class="crvthumb" style="background-image:url('media/r406/t000s.jpg')"></div></a><div><a href="video.html?rank=406" style="text-decoration:none;color:inherit"><div class="crvti">Bhikhari Ne kharidi New Bike | Expansi</div></a><div class="crvm">₹25,563 · CAC ₹639 · <a href="https://www.instagram.com/p/DY1Jpg8gIVx/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Rahul" aria-label="all videos by Rahul" title="all videos by Rahul"></a><div class="crhead"><div class="crrank">26</div>
+<div><a class="crname" href="explore.html?creator=Rahul">Rahul</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Rahul">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DTSOtp_AGzC/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹148,382</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹488</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.691%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹31</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=195" style="flex:none"><div class="crvthumb" style="background-image:url('media/r195/t000s.jpg')"></div></a><div><a href="video.html?rank=195" style="text-decoration:none;color:inherit"><div class="crvti">Friend Bought new phone wiht Bachatt a</div></a><div class="crvm">₹96,209 · CAC ₹448 · <a href="https://www.instagram.com/p/DTSOtp_AGzC/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=299" style="flex:none"><div class="crvthumb" style="background-image:url('media/r299/t000s.jpg')"></div></a><div><a href="video.html?rank=299" style="text-decoration:none;color:inherit"><div class="crvti">Love Proposal I Expansion in Bengali</div></a><div class="crvm">₹52,173 · CAC ₹586 · <a href="https://www.instagram.com/p/DYW_5dRAJUz/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ibrahim" aria-label="all videos by Ibrahim" title="all videos by Ibrahim"></a><div class="crhead"><div class="crrank">27</div>
+<div><a class="crname" href="explore.html?creator=Ibrahim">Ibrahim</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Ibrahim">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCgbw2gHOQ/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹141,686</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹547</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.747%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹86</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=313" style="flex:none"><div class="crvthumb" style="background-image:url('media/r313/t000s.jpg')"></div></a><div><a href="video.html?rank=313" style="text-decoration:none;color:inherit"><div class="crvti">CCTV Ka Raaz I Expansion in Telugu</div></a><div class="crvm">₹47,997 · CAC ₹466 · <a href="https://drive.google.com/file/d/1T9YBiDDFBIYjxR4TcdZiPV_J4ecxiSWK/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCgbw2gHOQ/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=325" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=325" style="text-decoration:none;color:inherit"><div class="crvti">Didn&#x27;t have enough money to buy second</div></a><div class="crvm">₹44,016 · CAC ₹657 · <a href="https://drive.google.com/file/d/1D3-WTlVyeFWqzPJdniy3ndG-yIZkDK2I/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DY93kCOgCH8/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=359" style="flex:none"><div class="crvthumb" style="background-image:url('media/r359/t000s.jpg')"></div></a><div><a href="video.html?rank=359" style="text-decoration:none;color:inherit"><div class="crvti">One Maggie please with Friend</div></a><div class="crvm">₹34,670 · CAC ₹559 · <a href="https://drive.google.com/file/d/1sgYwMuhJmt1R0oZ6M-82b2ZtKX5PvE6J/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVMukngEPx/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=508" style="flex:none"><div class="crvthumb" style="background-image:url('media/r508/t000s.jpg')"></div></a><div><a href="video.html?rank=508" style="text-decoration:none;color:inherit"><div class="crvti">Gas Cylinder in black</div></a><div class="crvm">₹15,003 · CAC ₹556 · <a href="https://drive.google.com/file/d/1x5Cr8C8zNsD-mmyyoTnjdaIM7PKI9rwM/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVOiZUgOhN/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Zabeer" aria-label="all videos by Zabeer" title="all videos by Zabeer"></a><div class="crhead"><div class="crrank">28</div>
+<div><a class="crname" href="explore.html?creator=Zabeer">Zabeer</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Zabeer">see all 4 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYrwHW5gPB8/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹138,447</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹535</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.445%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹51</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">4</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=293" style="flex:none"><div class="crvthumb" style="background-image:url('media/r293/t000s.jpg')"></div></a><div><a href="video.html?rank=293" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹54,684 · CAC ₹531 · <a href="https://drive.google.com/file/d/19IOVYiB8Kwn8UvXvpN8YxmaB8dvt48Ra/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYrwHW5gPB8/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=356" style="flex:none"><div class="crvthumb" style="background-image:url('media/r356/t000s.jpg')"></div></a><div><a href="video.html?rank=356" style="text-decoration:none;color:inherit"><div class="crvti">Salary is gone in just 3 days || Expan</div></a><div class="crvm">₹35,819 · CAC ₹569 · <a href="https://drive.google.com/file/d/1jPfgewRNOnvN0fBiGNdNMleTukTswxGa/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYHgYXOAIHj/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=366" style="flex:none"><div class="crvthumb" style="background-image:url('media/r366/t000s.jpg')"></div></a><div><a href="video.html?rank=366" style="text-decoration:none;color:inherit"><div class="crvti">Truth and Dare with a Best Friend, bec</div></a><div class="crvm">₹33,689 · CAC ₹468 · <a href="https://drive.google.com/file/d/1MkwNFg5E9C5obqc1xsDkl8tjxbHqo4ht/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DTSTnprAJVj/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=520" style="flex:none"><div class="crvthumb" style="background-image:url('media/r520/t000s.jpg')"></div></a><div><a href="video.html?rank=520" style="text-decoration:none;color:inherit"><div class="crvti">Friend who is always asking for money </div></a><div class="crvm">₹14,255 · CAC ₹679 · <a href="https://drive.google.com/file/d/1xaqkU2PpRevMf1MwL_CFhgY4f4hCJ2rm/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCcMUPAKTl/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Malvik" aria-label="all videos by Malvik" title="all videos by Malvik"></a><div class="crhead"><div class="crrank">29</div>
+<div><a class="crname" href="explore.html?creator=Malvik">Malvik</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Malvik">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZFhKP7gEs2/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹131,705</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹466</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.437%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹47</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=226" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=226" style="text-decoration:none;color:inherit"><div class="crvti">Life Strugal &amp; Financial security | Ex</div></a><div class="crvm">₹78,874 · CAC ₹441 · <a href="https://drive.google.com/file/d/1XZuUsUuHZ2o9NigLJJ3sZY4RHQwbN3uA/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZFhKP7gEs2/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=298" style="flex:none"><div class="crvthumb" style="background-image:url('media/r298/t000s.jpg')"></div></a><div><a href="video.html?rank=298" style="text-decoration:none;color:inherit"><div class="crvti">Bachatt karo aur jio Tension free</div></a><div class="crvm">₹52,831 · CAC ₹508 · <a href="https://drive.google.com/file/d/1KpXoTBeOzMtvGigVSASV76Wjm8KA5Ca8/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DY92gVjAFCW/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Pritam" aria-label="all videos by Pritam" title="all videos by Pritam"></a><div class="crhead"><div class="crrank">30</div>
+<div><a class="crname" href="explore.html?creator=Pritam">Pritam</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Pritam">see all 3 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DSE2DygAOFg/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹127,832</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹554</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">1.137%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹37</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">3</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=243" style="flex:none"><div class="crvthumb" style="background-image:url('media/r243/t000s.jpg')"></div></a><div><a href="video.html?rank=243" style="text-decoration:none;color:inherit"><div class="crvti">Son asks for money too frequently, mom</div></a><div class="crvm">₹69,878 · CAC ₹496 · <a href="https://www.instagram.com/p/DSE2DygAOFg/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=330" style="flex:none"><div class="crvthumb" style="background-image:url('media/r330/t000s.jpg')"></div></a><div><a href="video.html?rank=330" style="text-decoration:none;color:inherit"><div class="crvti">Lied to Dad for money and got beaten</div></a><div class="crvm">₹42,611 · CAC ₹636 · <a href="https://www.instagram.com/p/DV8tzaUDOLZ/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=496" style="flex:none"><div class="crvthumb" style="background-image:url('media/r496/t000s.jpg')"></div></a><div><a href="video.html?rank=496" style="text-decoration:none;color:inherit"><div class="crvti">My sister needed money for her college</div></a><div class="crvm">₹15,343 · CAC ₹667 · <a href="https://www.instagram.com/p/DUYRUIXgBOY/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Avishkar" aria-label="all videos by Avishkar" title="all videos by Avishkar"></a><div class="crhead"><div class="crrank">31</div>
+<div><a class="crname" href="explore.html?creator=Avishkar">Avishkar</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Avishkar">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYXBbL8AP_h/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹108,943</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹488</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.519%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹47</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=169" style="flex:none"><div class="crvthumb" style="background-image:url('media/r169/t000s.jpg')"></div></a><div><a href="video.html?rank=169" style="text-decoration:none;color:inherit"><div class="crvti">Second Hand nahi Nayi Car I Expansion </div></a><div class="crvm">₹108,943 · CAC ₹488 · <a href="https://drive.google.com/file/d/1HjaR97nyEyIlkdoR5NJVh3jaTqXO_XHO/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYXBbL8AP_h/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Yalla" aria-label="all videos by Yalla" title="all videos by Yalla"></a><div class="crhead"><div class="crrank">32</div>
+<div><a class="crname" href="explore.html?creator=Yalla">Yalla</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Yalla">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWVNIlqAMcd/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹94,679</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹486</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.504%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹72</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=199" style="flex:none"><div class="crvthumb" style="background-image:url('media/r199/t000s.jpg')"></div></a><div><a href="video.html?rank=199" style="text-decoration:none;color:inherit"><div class="crvti">That Roommate in every bachelor room</div></a><div class="crvm">₹94,679 · CAC ₹486 · <a href="https://drive.google.com/file/d/165bNTL2hL8Tfa8PHuq2W6e7upolYMAgj/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVNIlqAMcd/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Preetha" aria-label="all videos by Preetha" title="all videos by Preetha"></a><div class="crhead"><div class="crrank">33</div>
+<div><a class="crname" href="explore.html?creator=Preetha">Preetha</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Preetha">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYegpVgADjs/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹93,111</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹416</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">2.442%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹45</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=276" style="flex:none"><div class="crvthumb" style="background-image:url('media/r276/t000s.jpg')"></div></a><div><a href="video.html?rank=276" style="text-decoration:none;color:inherit"><div class="crvti">My Smart Wife</div></a><div class="crvm">₹59,548 · CAC ₹669 · <a href="https://drive.google.com/file/d/1n8-PjfwTHR3RbufjdOuCgjFs7YfFej5F/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYegpVgADjs/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=369" style="flex:none"><div class="crvthumb" style="background-image:url('media/r369/t000s.jpg')"></div></a><div><a href="video.html?rank=369" style="text-decoration:none;color:inherit"><div class="crvti">Husband Ka Gussa</div></a><div class="crvm">₹33,563 · CAC ₹249 · <a href="https://drive.google.com/file/d/10NektDJG1Iu_epBBZyCnjRTLwQtW5UsC/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZft5X2ALh6/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Dindigul%20Brothers" aria-label="all videos by Dindigul Brothers" title="all videos by Dindigul Brothers"></a><div class="crhead"><div class="crrank">34</div>
+<div><a class="crname" href="explore.html?creator=Dindigul%20Brothers">Dindigul Brothers</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Dindigul%20Brothers">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DSpi5XwAFex/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹91,808</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹446</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.771%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹38</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=201" style="flex:none"><div class="crvthumb" style="background-image:url('media/r201/t000s.jpg')"></div></a><div><a href="video.html?rank=201" style="text-decoration:none;color:inherit"><div class="crvti">Santosh missed his last bus as well an</div></a><div class="crvm">₹91,808 · CAC ₹446 · <a href="https://drive.google.com/file/d/1B2NV-AFW8mcuDRDnXtLt2wn12HK0_upi/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DSpi5XwAFex/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Govind" aria-label="all videos by Govind" title="all videos by Govind"></a><div class="crhead"><div class="crrank">35</div>
+<div><a class="crname" href="explore.html?creator=Govind">Govind</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Govind">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYl6Zv_gAPZ/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹87,562</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹429</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.490%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹36</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=208" style="flex:none"><div class="crvthumb" style="background-image:url('media/r208/t000s.jpg')"></div></a><div><a href="video.html?rank=208" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹87,562 · CAC ₹429 · <a href="https://drive.google.com/file/d/1xdcpjtfLPC1v7wmGY5jXTDmpjZxB2Z90/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYl6Zv_gAPZ/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Gopi" aria-label="all videos by Gopi" title="all videos by Gopi"></a><div class="crhead"><div class="crrank">36</div>
+<div><a class="crname" href="explore.html?creator=Gopi">Gopi</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Gopi">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZIA61LAF0O/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹85,086</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹342</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.639%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹27</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=212" style="flex:none"><div class="crvthumb" style="background-image:url('media/r212/t000s.jpg')"></div></a><div><a href="video.html?rank=212" style="text-decoration:none;color:inherit"><div class="crvti">Secret of my friend becoming a crorepa</div></a><div class="crvm">₹85,086 · CAC ₹342 · <a href="https://drive.google.com/file/d/15BjYK_nnEEzZBNgifmqkB5U4Ek8paC16/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZIA61LAF0O/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Prathamesha" aria-label="all videos by Prathamesha" title="all videos by Prathamesha"></a><div class="crhead"><div class="crrank">37</div>
+<div><a class="crname" href="explore.html?creator=Prathamesha">Prathamesha</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Prathamesha">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZEmfSCgN1D/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹83,891</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹415</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.605%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹33</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=216" style="flex:none"><div class="crvthumb" style="background-image:url('media/r216/t000s.jpg')"></div></a><div><a href="video.html?rank=216" style="text-decoration:none;color:inherit"><div class="crvti">Kharchili Wife I Expansion in Marathi</div></a><div class="crvm">₹83,891 · CAC ₹415 · <a href="https://drive.google.com/file/d/1jLNczeDxAjRdHZg7oIzXU8qkb_vA7xst/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZEmfSCgN1D/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Lakshami" aria-label="all videos by Lakshami" title="all videos by Lakshami"></a><div class="crhead"><div class="crrank">38</div>
+<div><a class="crname" href="explore.html?creator=Lakshami">Lakshami</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Lakshami">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZH-rfBgO3M/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹79,648</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹521</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.912%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹47</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=249" style="flex:none"><div class="crvthumb" style="background-image:url('media/r249/t000s.jpg')"></div></a><div><a href="video.html?rank=249" style="text-decoration:none;color:inherit"><div class="crvti">Meri Dost AI Smart Saving</div></a><div class="crvm">₹68,578 · CAC ₹520 · <a href="https://www.instagram.com/p/DZH-rfBgO3M/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=639" style="flex:none"><div class="crvthumb" style="background-image:url('media/r639/t000s.jpg')"></div></a><div><a href="video.html?rank=639" style="text-decoration:none;color:inherit"><div class="crvti">Wife Ne Ki Bachatt App Ki Smart Saving</div></a><div class="crvm">₹11,070 · CAC ₹527 · <a href="https://www.instagram.com/p/DZXBBJ0AIvf/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Chakram" aria-label="all videos by Chakram" title="all videos by Chakram"></a><div class="crhead"><div class="crrank">39</div>
+<div><a class="crname" href="explore.html?creator=Chakram">Chakram</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Chakram">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZH9B2OgMBR/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹76,896</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹509</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.349%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹45</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=230" style="flex:none"><div class="crvthumb" style="background-image:url('media/r230/t000s.jpg')"></div></a><div><a href="video.html?rank=230" style="text-decoration:none;color:inherit"><div class="crvti">₹500 Ka Change De Do</div></a><div class="crvm">₹76,896 · CAC ₹509 · <a href="https://www.instagram.com/p/DZH9B2OgMBR/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Rakesh" aria-label="all videos by Rakesh" title="all videos by Rakesh"></a><div class="crhead"><div class="crrank">40</div>
+<div><a class="crname" href="explore.html?creator=Rakesh">Rakesh</a><div class="crlangs"><span>Malayalam</span></div></div>
+<a class="crall" href="explore.html?creator=Rakesh">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYr1XiGAIKc/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹72,622</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹576</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.790%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹46</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=238" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=238" style="text-decoration:none;color:inherit"><div class="crvti">My MoM Smart Saving</div></a><div class="crvm">₹72,622 · CAC ₹576 · <a href="https://www.instagram.com/p/DYr1XiGAIKc/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Avolve%20Media" aria-label="all videos by Avolve Media" title="all videos by Avolve Media"></a><div class="crhead"><div class="crrank">41</div>
+<div><a class="crname" href="explore.html?creator=Avolve%20Media">Avolve Media</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Avolve%20Media">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DT2u2E8AMFc/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹72,368</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹561</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.470%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹58</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=240" style="flex:none"><div class="crvthumb" style="background-image:url('media/r240/t000s.jpg')"></div></a><div><a href="video.html?rank=240" style="text-decoration:none;color:inherit"><div class="crvti">Life of Bachatt and non Bachatt Person</div></a><div class="crvm">₹72,368 · CAC ₹561 · <a href="https://drive.google.com/file/d/1rNLZyhNkSXWyYjoo1ksyIa-H86jbWiHv/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DT2u2E8AMFc/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shaksham%20%28Hindi%29" aria-label="all videos by Shaksham (Hindi)" title="all videos by Shaksham (Hindi)"></a><div class="crhead"><div class="crrank">42</div>
+<div><a class="crname" href="explore.html?creator=Shaksham%20%28Hindi%29">Shaksham (Hindi)</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Shaksham%20%28Hindi%29">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZIAyt6gE8E/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹69,142</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹464</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.529%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹32</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=290" style="flex:none"><div class="crvthumb" style="background-image:url('media/r290/t000s.jpg')"></div></a><div><a href="video.html?rank=290" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car I Expansion in Tamil</div></a><div class="crvm">₹55,396 · CAC ₹450 · <a href="https://drive.google.com/file/d/1y7U8atXBAdGIlC9RhXQl4Y9iw44ebpL7/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZIAyt6gE8E/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=533" style="flex:none"><div class="crvthumb" style="background-image:url('media/r533/t000s.jpg')"></div></a><div><a href="video.html?rank=533" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car Husband/Wife I Expans</div></a><div class="crvm">₹13,746 · CAC ₹529 · <a href="https://drive.google.com/file/d/1oUpUJHfMplSRjCuFN9ZK6dNdir1l2OE5/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYOmR6YgPxk/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Vinod" aria-label="all videos by Vinod" title="all videos by Vinod"></a><div class="crhead"><div class="crrank">43</div>
+<div><a class="crname" href="explore.html?creator=Vinod">Vinod</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Vinod">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVqouRaAFF3/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹65,232</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹598</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.772%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹76</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=257" style="flex:none"><div class="crvthumb" style="background-image:url('media/r257/t000s.jpg')"></div></a><div><a href="video.html?rank=257" style="text-decoration:none;color:inherit"><div class="crvti">Wife’s ₹10,000 Shopping</div></a><div class="crvm">₹65,232 · CAC ₹598 · <a href="https://drive.google.com/file/d/1XnftJKuoeGkyGHYO5dwmorpOtOJ1I8kh/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVqouRaAFF3/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Trishool" aria-label="all videos by Trishool" title="all videos by Trishool"></a><div class="crhead"><div class="crrank">44</div>
+<div><a class="crname" href="explore.html?creator=Trishool">Trishool</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Trishool">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWVM6_ggK-C/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹58,556</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹505</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.478%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹74</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=279" style="flex:none"><div class="crvthumb" style="background-image:url('media/r279/t000s.jpg')"></div></a><div><a href="video.html?rank=279" style="text-decoration:none;color:inherit"><div class="crvti">Excuses for not saving</div></a><div class="crvm">₹58,556 · CAC ₹505 · <a href="https://drive.google.com/file/d/1Ze_3wNTz6KrLL2vhnw33-lf9rngrshaw/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVM6_ggK-C/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shaksham%20%28%29" aria-label="all videos by Shaksham ()" title="all videos by Shaksham ()"></a><div class="crhead"><div class="crrank">45</div>
+<div><a class="crname" href="explore.html?creator=Shaksham%20%28%29">Shaksham ()</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Shaksham%20%28%29">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVqWYMkgA-d/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹58,336</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹556</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.451%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹60</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=282" style="flex:none"><div class="crvthumb" style="background-image:url('media/r282/t000s.jpg')"></div></a><div><a href="video.html?rank=282" style="text-decoration:none;color:inherit"><div class="crvti">Cricket Match vs TV Show</div></a><div class="crvm">₹58,336 · CAC ₹556 · <a href="https://drive.google.com/file/d/1i8-pSohxkjGXV6VsmfLwICJmzZCpPxEP/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVqWYMkgA-d/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Mittai" aria-label="all videos by Mittai" title="all videos by Mittai"></a><div class="crhead"><div class="crrank">46</div>
+<div><a class="crname" href="explore.html?creator=Mittai">Mittai</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Mittai">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DTSTPOAgNBK/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹55,694</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹456</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.802%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹39</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=287" style="flex:none"><div class="crvthumb" style="background-image:url('media/r287/t000s.jpg')"></div></a><div><a href="video.html?rank=287" style="text-decoration:none;color:inherit"><div class="crvti">Bachatt App’s smart savings made the f</div></a><div class="crvm">₹55,694 · CAC ₹456 · <a href="https://drive.google.com/file/d/131aZ3H2cOi6nfaJ8rroUTqjt0Mh0XVB-/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DTSTPOAgNBK/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Arjun" aria-label="all videos by Arjun" title="all videos by Arjun"></a><div class="crhead"><div class="crrank">47</div>
+<div><a class="crname" href="explore.html?creator=Arjun">Arjun</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Arjun">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWRP2hbAAHs/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹55,598</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹445</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.546%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹83</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=288" style="flex:none"><div class="crvthumb" style="background-image:url('media/r288/t000s.jpg')"></div></a><div><a href="video.html?rank=288" style="text-decoration:none;color:inherit"><div class="crvti">Wife left the house in anger</div></a><div class="crvm">₹55,598 · CAC ₹445 · <a href="https://drive.google.com/file/d/1OuiYs_1j0RCdLfS32sNCtN6VEwcfzkhG/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWRP2hbAAHs/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ashwan" aria-label="all videos by Ashwan" title="all videos by Ashwan"></a><div class="crhead"><div class="crrank">48</div>
+<div><a class="crname" href="explore.html?creator=Ashwan">Ashwan</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Ashwan">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZDYQSEgGGS/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹54,575</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹627</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.372%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹61</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=294" style="flex:none"><div class="crvthumb" style="background-image:url('media/r294/t000s.jpg')"></div></a><div><a href="video.html?rank=294" style="text-decoration:none;color:inherit"><div class="crvti">New Bike-Bachatt App Ki Smart Saving</div></a><div class="crvm">₹54,575 · CAC ₹627 · <a href="https://www.instagram.com/p/DZDYQSEgGGS/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shilpa" aria-label="all videos by Shilpa" title="all videos by Shilpa"></a><div class="crhead"><div class="crrank">49</div>
+<div><a class="crname" href="explore.html?creator=Shilpa">Shilpa</a><div class="crlangs"><span>Malayalam</span></div></div>
+<a class="crall" href="explore.html?creator=Shilpa">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DY4V46KgGF2/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹51,557</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹770</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.435%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹87</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=302" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=302" style="text-decoration:none;color:inherit"><div class="crvti">My jealous sister at my wedding</div></a><div class="crvm">₹51,557 · CAC ₹770 · <a href="https://www.instagram.com/p/DY4V46KgGF2/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shivam" aria-label="all videos by Shivam" title="all videos by Shivam"></a><div class="crhead"><div class="crrank">50</div>
+<div><a class="crname" href="explore.html?creator=Shivam">Shivam</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Shivam">see all 3 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYR838ugKdm/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹48,202</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹497</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.465%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹80</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">3</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=411" style="flex:none"><div class="crvthumb" style="background-image:url('media/r411/t000s.jpg')"></div></a><div><a href="video.html?rank=411" style="text-decoration:none;color:inherit"><div class="crvti">Papa Hum Itne Gaeeb Kyo hain</div></a><div class="crvm">₹24,989 · CAC ₹490 · <a href="https://drive.google.com/file/d/1NDv8jF3Pd0-D9Pwaq9viSE8ExyF9kq9H/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYR838ugKdm/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=591" style="flex:none"><div class="crvthumb" style="background-image:url('media/r591/t000s.jpg')"></div></a><div><a href="video.html?rank=591" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic | Expansion</div></a><div class="crvm">₹12,088 · CAC ₹484 · <a href="https://drive.google.com/file/d/1G6r67cRvIRo3uR_K0uc-ittAA1Wy1TrT/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXE1RaAB0h/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=636" style="flex:none"><div class="crvthumb" style="background-image:url('media/r636/t000s.jpg')"></div></a><div><a href="video.html?rank=636" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car I Expansion in Hindi</div></a><div class="crvm">₹11,125 · CAC ₹530 · <a href="https://drive.google.com/file/d/1z8UagxaIm0_UrVg1ls6LgBtE2_ORmOBX/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_5DgdACTa/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Farhan" aria-label="all videos by Farhan" title="all videos by Farhan"></a><div class="crhead"><div class="crrank">51</div>
+<div><a class="crname" href="explore.html?creator=Farhan">Farhan</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Farhan">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DY4Ya79AI8-/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹47,948</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹639</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.400%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹66</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=314" style="flex:none"><div class="crvthumb" style="background-image:url('media/r314/t000s.jpg')"></div></a><div><a href="video.html?rank=314" style="text-decoration:none;color:inherit"><div class="crvti">The month is half over</div></a><div class="crvm">₹47,948 · CAC ₹639 · <a href="https://drive.google.com/file/d/1yQu6YjJrseI6REwO-NI85695htuzicNn/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DY4Ya79AI8-/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Prince" aria-label="all videos by Prince" title="all videos by Prince"></a><div class="crhead"><div class="crrank">52</div>
+<div><a class="crname" href="explore.html?creator=Prince">Prince</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Prince">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZW40RHAKp8/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹47,806</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹469</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.476%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹57</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=377" style="flex:none"><div class="crvthumb" style="background-image:url('media/r377/t000s.jpg')"></div></a><div><a href="video.html?rank=377" style="text-decoration:none;color:inherit"><div class="crvti">Kharchili Girlfriend | Expansion in Te</div></a><div class="crvm">₹32,853 · CAC ₹416 · <a href="https://drive.google.com/file/d/1KaU_EdiFa6zZD07NblMFdhipeW7JiR5r/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZW40RHAKp8/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=510" style="flex:none"><div class="crvthumb" style="background-image:url('media/r510/t000s.jpg')"></div></a><div><a href="video.html?rank=510" style="text-decoration:none;color:inherit"><div class="crvti">Kanjus Friend I Expansion in Telugu ||</div></a><div class="crvm">₹14,953 · CAC ₹650 · <a href="https://drive.google.com/file/d/1a-sB5piegRdD1qJ7BnYmKARwBv5Ahh_6/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DYCeqgwAKP2/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sajin" aria-label="all videos by Sajin" title="all videos by Sajin"></a><div class="crhead"><div class="crrank">53</div>
+<div><a class="crname" href="explore.html?creator=Sajin">Sajin</a><div class="crlangs"><span>Malayalam</span></div></div>
+<a class="crall" href="explore.html?creator=Sajin">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZE1I69gEHz/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹43,020</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹559</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">3.067%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹75</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=328" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=328" style="text-decoration:none;color:inherit"><div class="crvti">Mother &amp; Wife&#x27;s Smart Saving</div></a><div class="crvm">₹43,020 · CAC ₹559 · <a href="https://www.instagram.com/p/DZE1I69gEHz/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Mama%27s%20Girl" aria-label="all videos by Mama&#x27;s Girl" title="all videos by Mama&#x27;s Girl"></a><div class="crhead"><div class="crrank">54</div>
+<div><a class="crname" href="explore.html?creator=Mama%27s%20Girl">Mama&#x27;s Girl</a><div class="crlangs"><span>Bengali</span></div></div>
+<a class="crall" href="explore.html?creator=Mama%27s%20Girl">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWGzf59ABhw/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹41,573</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹602</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.665%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹37</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=332" style="flex:none"><div class="crvthumb" style="background-image:url('media/r332/t000s.jpg')"></div></a><div><a href="video.html?rank=332" style="text-decoration:none;color:inherit"><div class="crvti">Mama&#x27;s Girl</div></a><div class="crvm">₹41,573 · CAC ₹602 · <a href="https://www.instagram.com/p/DWGzf59ABhw/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ranjith" aria-label="all videos by Ranjith" title="all videos by Ranjith"></a><div class="crhead"><div class="crrank">55</div>
+<div><a class="crname" href="explore.html?creator=Ranjith">Ranjith</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Ranjith">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZftxvFAIwA/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹40,283</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹274</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.528%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹21</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=337" style="flex:none"><div class="crvthumb" style="background-image:url('media/r337/t000s.jpg')"></div></a><div><a href="video.html?rank=337" style="text-decoration:none;color:inherit"><div class="crvti">Salary is gone in just 3 days I Expans</div></a><div class="crvm">₹40,283 · CAC ₹274 · <a href="https://drive.google.com/file/d/1UExE4FgIfQInRTUlzcnCGHYW1DdAiPVi/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZftxvFAIwA/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Karan" aria-label="all videos by Karan" title="all videos by Karan"></a><div class="crhead"><div class="crrank">56</div>
+<div><a class="crname" href="explore.html?creator=Karan">Karan</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Karan">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWRUIR1gNZn/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹39,227</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹586</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.719%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹79</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=339" style="flex:none"><div class="crvthumb" style="background-image:url('media/r339/t000s.jpg')"></div></a><div><a href="video.html?rank=339" style="text-decoration:none;color:inherit"><div class="crvti">Mom’s Smart Savings &amp; The ₹10 Twist!</div></a><div class="crvm">₹39,227 · CAC ₹586 · <a href="https://drive.google.com/file/d/1zMYTztoKVNYNoZkjIXsdxjZP0yqVRd41/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWRUIR1gNZn/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Aromal" aria-label="all videos by Aromal" title="all videos by Aromal"></a><div class="crhead"><div class="crrank">57</div>
+<div><a class="crname" href="explore.html?creator=Aromal">Aromal</a><div class="crlangs"><span>Malayalam</span></div></div>
+<a class="crall" href="explore.html?creator=Aromal">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZcZC_IgAZW/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹38,564</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹448</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.710%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹29</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=343" style="flex:none"><div class="crvthumb"></div></a><div><a href="video.html?rank=343" style="text-decoration:none;color:inherit"><div class="crvti">Amma Ka Gussa Aur Bete Ki Savings</div></a><div class="crvm">₹38,564 · CAC ₹448 · <a href="https://www.instagram.com/p/DZcZC_IgAZW/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Chhotu%2C%20Bhaiya%2C%20Guard" aria-label="all videos by Chhotu, Bhaiya, Guard" title="all videos by Chhotu, Bhaiya, Guard"></a><div class="crhead"><div class="crrank">58</div>
+<div><a class="crname" href="explore.html?creator=Chhotu%2C%20Bhaiya%2C%20Guard">Chhotu, Bhaiya, Guard</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Chhotu%2C%20Bhaiya%2C%20Guard">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZh6iMTgFg3/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹36,283</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,512</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">1.604%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹160</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=352" style="flex:none"><div class="crvthumb" style="background-image:url('media/r352/t000s.jpg')"></div></a><div><a href="video.html?rank=352" style="text-decoration:none;color:inherit"><div class="crvti">Chhotu, Bhaiya, Guard</div></a><div class="crvm">₹36,283 · CAC ₹1,512 · <a href="https://www.instagram.com/p/DZh6iMTgFg3/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Aman" aria-label="all videos by Aman" title="all videos by Aman"></a><div class="crhead"><div class="crrank">59</div>
+<div><a class="crname" href="explore.html?creator=Aman">Aman</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Aman">see all 3 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXE2AOAMme/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹34,258</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹952</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.307%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹120</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">3</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=612" style="flex:none"><div class="crvthumb" style="background-image:url('media/r612/t000s.jpg')"></div></a><div><a href="video.html?rank=612" style="text-decoration:none;color:inherit"><div class="crvti">Mere Dost Ki Chiller Wali Salary</div></a><div class="crvm">₹11,813 · CAC ₹1,181 · <a href="https://drive.google.com/file/d/1mKgMY9X1xagQS7h3siSl7fnmfSKCApUp/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXE2AOAMme/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=621" style="flex:none"><div class="crvthumb" style="background-image:url('media/r621/t000s.jpg')"></div></a><div><a href="video.html?rank=621" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car I Expansion in Hindi</div></a><div class="crvm">₹11,606 · CAC ₹528 · <a href="https://drive.google.com/file/d/19SIcT8Zf3mtxcG-SI36G9iRD41RhdLVs/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_4_wkgBAF/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=645" style="flex:none"><div class="crvthumb" style="background-image:url('media/r645/t000s.jpg')"></div></a><div><a href="video.html?rank=645" style="text-decoration:none;color:inherit"><div class="crvti">Goa Trip Ka Plan</div></a><div class="crvm">₹10,839 · CAC ₹2,710 · <a href="https://drive.google.com/file/d/173eLjgoRtmksxM672P22-8rOqAksc8se/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZFoD_3ACK3/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sunny" aria-label="all videos by Sunny" title="all videos by Sunny"></a><div class="crhead"><div class="crrank">60</div>
+<div><a class="crname" href="explore.html?creator=Sunny">Sunny</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Sunny">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZNBymIgLrW/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹32,895</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹470</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">1.727%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹58</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=375" style="flex:none"><div class="crvthumb" style="background-image:url('media/r375/t000s.jpg')"></div></a><div><a href="video.html?rank=375" style="text-decoration:none;color:inherit"><div class="crvti">Mummy Ko Sikhayi Bachatt Ki Saving</div></a><div class="crvm">₹32,895 · CAC ₹470 · <a href="https://drive.google.com/file/d/1uSr0eaCtMnIvNPDsJ6Xc56JewjmvcexO/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZNBymIgLrW/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Vasanth" aria-label="all videos by Vasanth" title="all videos by Vasanth"></a><div class="crhead"><div class="crrank">61</div>
+<div><a class="crname" href="explore.html?creator=Vasanth">Vasanth</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Vasanth">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DXwfCNugHPj/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹26,122</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹608</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.366%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹118</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=402" style="flex:none"><div class="crvthumb" style="background-image:url('media/r402/t000s.jpg')"></div></a><div><a href="video.html?rank=402" style="text-decoration:none;color:inherit"><div class="crvti">Bike Chori Ho Gayi</div></a><div class="crvm">₹26,122 · CAC ₹608 · <a href="https://www.instagram.com/p/DXwfCNugHPj/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Middle%20Class%20Mom" aria-label="all videos by Middle Class Mom" title="all videos by Middle Class Mom"></a><div class="crhead"><div class="crrank">62</div>
+<div><a class="crname" href="explore.html?creator=Middle%20Class%20Mom">Middle Class Mom</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Middle%20Class%20Mom">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVqo7PwANt5/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹25,015</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹510</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.901%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹49</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=410" style="flex:none"><div class="crvthumb" style="background-image:url('media/r410/t000s.jpg')"></div></a><div><a href="video.html?rank=410" style="text-decoration:none;color:inherit"><div class="crvti">Middle Class Mom</div></a><div class="crvm">₹25,015 · CAC ₹510 · <a href="https://www.instagram.com/p/DVqo7PwANt5/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Mohsin" aria-label="all videos by Mohsin" title="all videos by Mohsin"></a><div class="crhead"><div class="crrank">63</div>
+<div><a class="crname" href="explore.html?creator=Mohsin">Mohsin</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Mohsin">see all 2 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXE2yVAIYf/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹23,722</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹505</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.431%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹77</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">2</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=588" style="flex:none"><div class="crvthumb" style="background-image:url('media/r588/t000s.jpg')"></div></a><div><a href="video.html?rank=588" style="text-decoration:none;color:inherit"><div class="crvti">Helped a Poor Car Mechanic</div></a><div class="crvm">₹12,205 · CAC ₹678 · <a href="https://drive.google.com/file/d/1EvyyE-JwTEKB4jsVExFfTwQTUO2eyEcL/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXE2yVAIYf/" target="_blank" rel="noopener">IG</a></div></div></div><div class="crvid"><a href="video.html?rank=627" style="flex:none"><div class="crvthumb" style="background-image:url('media/r627/t000s.jpg')"></div></a><div><a href="video.html?rank=627" style="text-decoration:none;color:inherit"><div class="crvti">Bought a New Car Father/Son I Expansio</div></a><div class="crvm">₹11,517 · CAC ₹397 · <a href="https://drive.google.com/file/d/1od-agIbbgnomLkuxc70Ajmcixn-wosYn/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DX_5BjUANWz/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Jeevan" aria-label="all videos by Jeevan" title="all videos by Jeevan"></a><div class="crhead"><div class="crrank">64</div>
+<div><a class="crname" href="explore.html?creator=Jeevan">Jeevan</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Jeevan">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZW9yH8ABD5/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹23,082</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹537</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.770%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹39</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=431" style="flex:none"><div class="crvthumb" style="background-image:url('media/r431/t000s.jpg')"></div></a><div><a href="video.html?rank=431" style="text-decoration:none;color:inherit"><div class="crvti">Badi Badi Batain,Pocket Kahli</div></a><div class="crvm">₹23,082 · CAC ₹537 · <a href="https://drive.google.com/file/d/1o-9x3RE2ajIdZIH2FOzONTZysGHdMmyH/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZW9yH8ABD5/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ravi" aria-label="all videos by Ravi" title="all videos by Ravi"></a><div class="crhead"><div class="crrank">65</div>
+<div><a class="crname" href="explore.html?creator=Ravi">Ravi</a><div class="crlangs"><span>Telugu</span></div></div>
+<a class="crall" href="explore.html?creator=Ravi">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DWVOTTtgN-e/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹21,279</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,064</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.159%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹199</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=447" style="flex:none"><div class="crvthumb" style="background-image:url('media/r447/t000s.jpg')"></div></a><div><a href="video.html?rank=447" style="text-decoration:none;color:inherit"><div class="crvti">Couple Goals &amp; Savings Goals</div></a><div class="crvm">₹21,279 · CAC ₹1,064 · <a href="https://drive.google.com/file/d/1p87YuxYIE-lJitjY5ov4q-Zt3MKZdUoX/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DWVOTTtgN-e/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Kishu" aria-label="all videos by Kishu" title="all videos by Kishu"></a><div class="crhead"><div class="crrank">66</div>
+<div><a class="crname" href="explore.html?creator=Kishu">Kishu</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Kishu">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DVqpJzrgLpL/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹19,706</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹469</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.525%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹40</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=457" style="flex:none"><div class="crvthumb" style="background-image:url('media/r457/t000s.jpg')"></div></a><div><a href="video.html?rank=457" style="text-decoration:none;color:inherit"><div class="crvti">Middle Class Mom</div></a><div class="crvm">₹19,706 · CAC ₹469 · <a href="https://drive.google.com/file/d/1TeRq74m7F7YJ6AoXwgK_uXvg_QNRim2r/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DVqpJzrgLpL/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Naveen" aria-label="all videos by Naveen" title="all videos by Naveen"></a><div class="crhead"><div class="crrank">67</div>
+<div><a class="crname" href="explore.html?creator=Naveen">Naveen</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Naveen">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYCZsNQAAR0/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹17,366</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹482</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.330%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹56</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=476" style="flex:none"><div class="crvthumb" style="background-image:url('media/r476/t000s.jpg')"></div></a><div><a href="video.html?rank=476" style="text-decoration:none;color:inherit"><div class="crvti">My Friend New Saving Tricks</div></a><div class="crvm">₹17,366 · CAC ₹482 · <a href="https://www.instagram.com/p/DYCZsNQAAR0/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Krishna" aria-label="all videos by Krishna" title="all videos by Krishna"></a><div class="crhead"><div class="crrank">68</div>
+<div><a class="crname" href="explore.html?creator=Krishna">Krishna</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Krishna">see all 1 videos &rarr;</a><a class="crig" href="https://www.facebook.com/watch/?v=1255567106763710" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹16,156</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹769</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.300%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹163</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=484" style="flex:none"><div class="crvthumb" style="background-image:url('media/r484/t000s.jpg')"></div></a><div><a href="video.html?rank=484" style="text-decoration:none;color:inherit"><div class="crvti">Ganpat Seth Son Has Been Kidnapped</div></a><div class="crvm">₹16,156 · CAC ₹769 · <a href="https://drive.google.com/file/d/16ZFqg7hEzL9FDsexhQIy8FjcY0WKdttm/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.facebook.com/watch/?v=1255567106763710" target="_blank" rel="noopener">FB</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Shivani" aria-label="all videos by Shivani" title="all videos by Shivani"></a><div class="crhead"><div class="crrank">69</div>
+<div><a class="crname" href="explore.html?creator=Shivani">Shivani</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Shivani">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZNAGrRAD2X/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹15,111</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹720</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.833%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹53</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=505" style="flex:none"><div class="crvthumb" style="background-image:url('media/r505/t000s.jpg')"></div></a><div><a href="video.html?rank=505" style="text-decoration:none;color:inherit"><div class="crvti">Pados Wali Ladki</div></a><div class="crvm">₹15,111 · CAC ₹720 · <a href="https://www.instagram.com/p/DZNAGrRAD2X/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=KANAYKA" aria-label="all videos by KANAYKA" title="all videos by KANAYKA"></a><div class="crhead"><div class="crrank">70</div>
+<div><a class="crname" href="explore.html?creator=KANAYKA">KANAYKA</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=KANAYKA">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DRcTgzfgBiW/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹14,226</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹316</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.379%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹39</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=522" style="flex:none"><div class="crvthumb" style="background-image:url('media/r522/t000s.jpg')"></div></a><div><a href="video.html?rank=522" style="text-decoration:none;color:inherit"><div class="crvti">Bhavesh Demo Video X Instapartnership </div></a><div class="crvm">₹14,226 · CAC ₹316 · <a href="https://www.instagram.com/p/DRcTgzfgBiW/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Ujjwal" aria-label="all videos by Ujjwal" title="all videos by Ujjwal"></a><div class="crhead"><div class="crrank">71</div>
+<div><a class="crname" href="explore.html?creator=Ujjwal">Ujjwal</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Ujjwal">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZUxoDnANos/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹14,048</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,405</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.453%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹118</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=525" style="flex:none"><div class="crvthumb" style="background-image:url('media/r525/t000s.jpg')"></div></a><div><a href="video.html?rank=525" style="text-decoration:none;color:inherit"><div class="crvti">Mummy Ne Beti ko Sikhai Samart Saving</div></a><div class="crvm">₹14,048 · CAC ₹1,405 · <a href="https://drive.google.com/file/d/1vRIJ64hysVL0PwzBXteEixGDBIL4kqjH/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZUxoDnANos/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Prasad" aria-label="all videos by Prasad" title="all videos by Prasad"></a><div class="crhead"><div class="crrank">72</div>
+<div><a class="crname" href="explore.html?creator=Prasad">Prasad</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Prasad">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZIBVDVgMjc/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹13,544</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,693</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.107%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹178</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=539" style="flex:none"><div class="crvthumb" style="background-image:url('media/r539/t000s.jpg')"></div></a><div><a href="video.html?rank=539" style="text-decoration:none;color:inherit"><div class="crvti">Friend Ko Sikhayi Bachatt App ki Smart</div></a><div class="crvm">₹13,544 · CAC ₹1,693 · <a href="https://drive.google.com/file/d/1dtv1jaydtTbjh7MjQ76v-IYQGdTFSuYL/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZIBVDVgMjc/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Seena" aria-label="all videos by Seena" title="all videos by Seena"></a><div class="crhead"><div class="crrank">73</div>
+<div><a class="crname" href="explore.html?creator=Seena">Seena</a><div class="crlangs"><span>Kannada</span></div></div>
+<a class="crall" href="explore.html?creator=Seena">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DYmo7p7gKZn/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹13,387</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹462</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.450%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹60</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=544" style="flex:none"><div class="crvthumb" style="background-image:url('media/r544/t000s.jpg')"></div></a><div><a href="video.html?rank=544" style="text-decoration:none;color:inherit"><div class="crvti">Bachatt karo aur jio Tension free | Ex</div></a><div class="crvm">₹13,387 · CAC ₹462 · <a href="https://www.instagram.com/p/DYmo7p7gKZn/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Sanskar" aria-label="all videos by Sanskar" title="all videos by Sanskar"></a><div class="crhead"><div class="crrank">74</div>
+<div><a class="crname" href="explore.html?creator=Sanskar">Sanskar</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Sanskar">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXIl2igOCy/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,698</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹794</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.394%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹40</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=564" style="flex:none"><div class="crvthumb" style="background-image:url('media/r564/t000s.jpg')"></div></a><div><a href="video.html?rank=564" style="text-decoration:none;color:inherit"><div class="crvti">Love Proposal I Expansion in Marathi</div></a><div class="crvm">₹12,698 · CAC ₹794 · <a href="https://drive.google.com/file/d/1GZ0h02m9tN71BRa_LaYGrW2R8MwXBoSJ/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXIl2igOCy/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Priya" aria-label="all videos by Priya" title="all videos by Priya"></a><div class="crhead"><div class="crrank">75</div>
+<div><a class="crname" href="explore.html?creator=Priya">Priya</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Priya">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXTzj4gG8t/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,407</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,772</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.340%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹87</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=575" style="flex:none"><div class="crvthumb" style="background-image:url('media/r575/t000s.jpg')"></div></a><div><a href="video.html?rank=575" style="text-decoration:none;color:inherit"><div class="crvti">Nalayak Boyfriend</div></a><div class="crvm">₹12,407 · CAC ₹1,772 · <a href="https://drive.google.com/file/d/16QPwTJVy5cXuVcUDfPv6TcqPUEjMFWNa/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXTzj4gG8t/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Smriti" aria-label="all videos by Smriti" title="all videos by Smriti"></a><div class="crhead"><div class="crrank">76</div>
+<div><a class="crname" href="explore.html?creator=Smriti">Smriti</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=Smriti">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXRYAkgICI/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,392</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,377</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.390%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹122</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=576" style="flex:none"><div class="crvthumb" style="background-image:url('media/r576/t000s.jpg')"></div></a><div><a href="video.html?rank=576" style="text-decoration:none;color:inherit"><div class="crvti">My Samart Watch</div></a><div class="crvm">₹12,392 · CAC ₹1,377 · <a href="https://drive.google.com/file/d/1VEf7pQg_6UAa7JeI4i6pfJlJhjwvauvn/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXRYAkgICI/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=P%20Praveen" aria-label="all videos by P Praveen" title="all videos by P Praveen"></a><div class="crhead"><div class="crrank">77</div>
+<div><a class="crname" href="explore.html?creator=P%20Praveen">P Praveen</a><div class="crlangs"><span>Tamil</span></div></div>
+<a class="crall" href="explore.html?creator=P%20Praveen">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZW9odMAGKK/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,284</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹1,117</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.395%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹105</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=583" style="flex:none"><div class="crvthumb" style="background-image:url('media/r583/t000s.jpg')"></div></a><div><a href="video.html?rank=583" style="text-decoration:none;color:inherit"><div class="crvti">Chhote Bhai Ki Love Story</div></a><div class="crvm">₹12,284 · CAC ₹1,117 · <a href="https://drive.google.com/file/d/1v-KfQFintLvLk8GQpqhFTYb_p2cURSGO/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZW9odMAGKK/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Aman%20Khan" aria-label="all videos by Aman Khan" title="all videos by Aman Khan"></a><div class="crhead"><div class="crrank">78</div>
+<div><a class="crname" href="explore.html?creator=Aman%20Khan">Aman Khan</a><div class="crlangs"><span>Hindi</span></div></div>
+<a class="crall" href="explore.html?creator=Aman%20Khan">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZXEmHggG_L/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,214</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹763</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.333%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹69</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=587" style="flex:none"><div class="crvthumb" style="background-image:url('media/r587/t000s.jpg')"></div></a><div><a href="video.html?rank=587" style="text-decoration:none;color:inherit"><div class="crvti">Dost Ka Phone Kharab Ho Gaya</div></a><div class="crvm">₹12,214 · CAC ₹763 · <a href="https://drive.google.com/file/d/1cKq4YIL2qu4h5gcCPgpj7v0NYWfDbfZi/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZXEmHggG_L/" target="_blank" rel="noopener">IG</a></div></div></div></div></div><div class="crcard"><a class="cstretch" href="explore.html?creator=Pooja" aria-label="all videos by Pooja" title="all videos by Pooja"></a><div class="crhead"><div class="crrank">79</div>
+<div><a class="crname" href="explore.html?creator=Pooja">Pooja</a><div class="crlangs"><span>Marathi</span></div></div>
+<a class="crall" href="explore.html?creator=Pooja">see all 1 videos &rarr;</a><a class="crig" href="https://www.instagram.com/p/DZDVg-ngGV6/" target="_blank" rel="noopener">◎ Instagram →</a></div>
+<div class="crstats">
+<div class="crstat"><div class="v">₹12,161</div><div class="l">total spend</div></div>
+<div class="crstat"><div class="v">₹760</div><div class="l">CAC delivered</div></div>
+<div class="crstat"><div class="v">0.295%</div><div class="l">avg CTR</div></div>
+<div class="crstat"><div class="v">₹78</div><div class="l">CPI</div></div>
+<div class="crstat"><div class="v">1</div><div class="l">videos</div></div>
+</div><div class="crvids"><div class="crvid"><a href="video.html?rank=589" style="flex:none"><div class="crvthumb" style="background-image:url('media/r589/t000s.jpg')"></div></a><div><a href="video.html?rank=589" style="text-decoration:none;color:inherit"><div class="crvti">Wife Ne Kharida Naya iPhone</div></a><div class="crvm">₹12,161 · CAC ₹760 · <a href="https://drive.google.com/file/d/1Y6Vu-p3VfuBGeN0fP-r8FD8P25f19gkP/view?usp=drive_link" target="_blank" rel="noopener">Drive</a><a href="https://www.instagram.com/p/DZDVg-ngGV6/" target="_blank" rel="noopener">IG</a></div></div></div></div></div></section><footer>Bachatt Creative Intelligence · ranks 1–650 · <a href="index.html" style="color:var(--coral)">← overview</a></footer></div>
+<script>
+(function(){var b=document.getElementById('themeToggle');if(!b)return;function ic(){return document.documentElement.getAttribute('data-theme')==='dark'?'☀':'🌙';}b.textContent=ic();b.onclick=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}b.textContent=ic();};})();
+(function(){var dot=document.getElementById('cdot'),ring=document.getElementById('cring');if(!dot)return;var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;onmousemove=function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate(-50%,-50%) translate('+mx+'px,'+my+'px)';},{passive:true};(function l(){rx+=(mx-rx)*.45;ry+=(my-ry)*.45;ring.style.transform='translate(-50%,-50%) translate('+rx+'px,'+ry+'px)';requestAnimationFrame(l);})();
+document.addEventListener('mouseover',function(e){if(e.target.closest('.ad,.brow,.theme,.chip,.fchip,.cta a,.tracknum,.navlinks a,.navbrand'))document.body.classList.add('hovering');});
+document.addEventListener('mouseout',function(e){if(e.target.closest('.ad,.brow,.theme,.chip,.fchip,.cta a,.tracknum,.navlinks a,.navbrand'))document.body.classList.remove('hovering');});})();
+(function(){var b=document.getElementById('prog');function u(){var h=document.documentElement.scrollHeight-innerHeight;b.style.width=(h>0?scrollY/h*100:0)+'%';}onscroll=u;onresize=u;u();})();
+(function(){var els=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});els.forEach(function(e){io.observe(e);});})();
+</script>
+</body></html>

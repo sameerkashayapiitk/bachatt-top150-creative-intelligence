@@ -1,0 +1,6 @@
+00:00 - 00:12  Papa
+00:12 - 00:26  local
+00:26 - 00:30  app.
+00:30 - 00:38  app savings or investment
+00:38 - 00:58  daily invest
+00:58 - 01:02  App download.
