@@ -75,17 +75,29 @@ h1 em{font-style:italic;color:var(--teal)}
 .theme .tb{height:7px;border-radius:4px;background:var(--paper-2);overflow:hidden;margin-bottom:6px}
 .theme .tb i{display:block;height:100%;border-radius:4px}
 .theme .tm{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--mut)}
-.ads{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
-.ad{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column;content-visibility:auto;contain-intrinsic-size:340px 430px}
+.ads{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:13px}
+.ad{position:relative;background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column;content-visibility:auto;contain-intrinsic-size:240px 360px}
 .ad:hover{transform:translateY(-4px);box-shadow:0 14px 34px -16px rgba(8,69,59,.42);border-color:var(--teal)}
-.ad .thumb{position:relative;aspect-ratio:4/3;background:var(--paper-2) center/cover no-repeat;border-bottom:1px solid var(--line)}
+.ad .thumb{position:relative;aspect-ratio:1/1;background:var(--paper-2) center/cover no-repeat;border-bottom:1px solid var(--line)}
+/* list view */
+.ads.listview{grid-template-columns:1fr;gap:9px}
+.ads.listview .ad{flex-direction:row;align-items:stretch}
+.ads.listview .ad .thumb-wrap{width:120px;flex:none}
+.ads.listview .ad .thumb{aspect-ratio:1/1;height:100%;border-bottom:none;border-right:1px solid var(--line)}
+.ads.listview .ad .body{padding:11px 14px;gap:6px}
+.ads.listview .ad .fh,.ads.listview .ad .ev{display:none}
+.ads.listview .ad .mets{margin-top:auto}
+@media(max-width:560px){.ads.listview .ad .thumb-wrap{width:84px}}
+.viewtog{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.viewtog button{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:6px 12px;background:var(--card);color:var(--mut);border:none;cursor:pointer;transition:.15s}
+.viewtog button.on{background:var(--teal);color:#fff}
 .ad .thumb.ph{display:grid;place-items:center;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:11px}
 .ad .rk{position:absolute;top:8px;left:8px;background:var(--teal-deep);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:3px 8px;border-radius:7px}
 .ad .play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.2s;background:rgba(8,69,59,.32)}
 .ad .thumb-wrap:hover .play{opacity:1}
 .ad .play span{width:48px;height:48px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-size:18px}
-.ad .body{padding:14px 15px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
-.ad .ti{font-weight:600;font-size:15px;line-height:1.25;letter-spacing:-.01em}
+.ad .body{padding:12px 13px 13px;display:flex;flex-direction:column;gap:7px;flex:1}
+.ad .ti{font-weight:600;font-size:13.5px;line-height:1.22;letter-spacing:-.01em}
 .cstretch{position:absolute;inset:0;z-index:1;cursor:pointer}
 .ad:hover{cursor:pointer}.ad:hover .ti{color:var(--teal-deep)}
 .ad .cta{position:relative;z-index:2}
@@ -153,6 +165,7 @@ footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospa
 <option value="spend">Spend</option><option value="cac">CAC (per customer)</option><option value="cpi">CPI (per install)</option><option value="ctr">CTR</option><option value="stop">Stopping power</option><option value="vid100">Video 100%</option>
 </select>
 <button class="clearbtn" id="sortDir" style="border-color:var(--teal);color:var(--teal-deep)">↓ desc</button>
+<span class="viewtog"><button id="vGrid" class="on">▦ cards</button><button id="vList">☰ list</button></span>
 <button class="clearbtn" id="clear">clear all</button><span id="count"></span></div>
 <div class="filters"><span class="fglabel">emotion</span><div class="fgroup" id="fEmo"></div></div>
 <div class="filters"><span class="fglabel">theme</span><div class="fgroup" id="fTheme"></div></div>
@@ -222,6 +235,10 @@ function render(){
 }
 document.getElementById('sortBy').addEventListener('change',function(e){state.sort=e.target.value;render();});
 document.getElementById('sortDir').onclick=function(){state.dir=(state.dir==='asc'?'desc':'asc');this.textContent=(state.dir==='asc'?'↑ asc':'↓ desc');render();};
+(function(){var g=document.getElementById('grid'),bg=document.getElementById('vGrid'),bl=document.getElementById('vList');
+var saved='grid';try{saved=localStorage.getItem('exploreView')||'grid';}catch(e){}
+function setView(v){g.classList.toggle('listview',v==='list');bg.classList.toggle('on',v==='grid');bl.classList.toggle('on',v==='list');try{localStorage.setItem('exploreView',v);}catch(e){}}
+bg.onclick=function(){setView('grid');};bl.onclick=function(){setView('list');};setView(saved);})();
 render();
 </script>
 <script>
