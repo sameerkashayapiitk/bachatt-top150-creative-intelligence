@@ -56,13 +56,14 @@ h1 em{font-style:italic;color:var(--teal)}
 .tracksub{margin:6px 0 0;color:var(--mut);max-width:64ch;font-size:16px}
 .tracksub b{color:var(--ink);font-weight:600}
 .board{margin-top:28px;display:grid;gap:10px}
-.brow{display:grid;grid-template-columns:210px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
+.brow{display:grid;grid-template-columns:200px 1fr 160px auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
 .brow:hover{transform:translateX(4px);border-color:var(--teal)}
 .brow.t3{background:var(--card)}
 .brow .en{font-family:'Space Grotesk';font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;color:var(--ink)}
 .swatch{width:11px;height:11px;border-radius:3px;flex:none}
 .brow .barwrap{position:relative;height:26px;border-radius:6px;background:var(--paper-2);overflow:hidden}
-.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;padding-left:10px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.brow .barval{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;color:var(--teal-deep);white-space:nowrap;text-align:right}
 .brow .mets{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);text-align:right;white-space:nowrap}
 .brow .mets b{color:var(--teal-deep)}
 .brow .go{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--coral);margin-left:6px}
@@ -153,7 +154,7 @@ h1 em{font-style:italic;color:var(--teal)}
 footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;letter-spacing:.04em}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
-@media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
+@media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .barval{grid-column:1/-1;text-align:left}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
 .navlogoimg{height:24px;width:auto;background:#fff;padding:4px 7px;border-radius:7px;display:block}.navtoggle{font-size:15px;line-height:1;background:transparent;border:1px solid var(--line);color:var(--teal-deep);width:34px;height:34px;border-radius:8px;cursor:pointer;display:inline-grid;place-items:center}.navtoggle:hover{background:var(--paper-2)}.navcompetitor{background:transparent;border:1px solid var(--gold);color:var(--gold) !important}.navcompetitor:hover{background:var(--gold);color:#fff !important}.herologo{height:42px;width:auto;background:#fff;padding:5px 9px;border-radius:10px;display:block}[data-theme=dark] .lab.fmt{background:#2a2540;color:#e6c878;border-color:#3a3358}[data-theme=dark] .lab.hook{background:#3a2630;color:#ffb59c}[data-theme=dark] .topnav::after{opacity:.5}[data-theme=dark] .cursor-dot,[data-theme=dark] .cursor-ring{mix-blend-mode:normal}
 </style></head><body><script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light")}catch(e){}</script><div class="field" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="progress" id="prog"></div><div class="cursor-ring" id="cring"></div><div class="cursor-dot" id="cdot"></div><nav class="topnav"><div class="navwrap"><a class="navbrand" href="index.html"><img class="navlogoimg" src="logo.png" alt="Bachatt"><span class="bt">Karega <span class="gn">Bharat</span></span></a><div class="navlinks"><a href="#scoreboard">Scoreboard</a><a class="" href="atglance.html">At a Glance</a><a class="" href="top10.html">Top 10</a><a class="" href="creators.html">Creators</a><a class="" href="definitions.html">Definitions</a><a class="navcta" href="explore.html">Explore all creatives &rarr;</a><a class="navcompetitor" href="https://sameerkashayapiitk.github.io/bachatt-competitor-intel/" title="competitor creative intelligence">Competitor Intel &#8599;</a><button class="navtoggle" id="themeToggle" aria-label="toggle dark mode" title="dark mode">🌙</button></div></div></nav><div class="wrap"><header>
@@ -170,23 +171,32 @@ footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospa
 <div class="tracktitle">The emotional scoreboard</div>
 <p class="tracksub">All nine emotions, ranked by the spend behind the creatives that lead with them — <b>₹78,656,167 / 7.9 Cr across 1138 analysed creatives</b> (of ₹8.3 Cr total ad spend). <b>Click the top three</b> to jump to their breakdown; the rest open in the explorer.</p>
 </div></div><div class="board"><a class="brow t3 reveal" href="atglance.html#greed-ambition"><div class="en"><span class="rankbadge">1</span><span class="swatch" style="background:#c9981f"></span>Greed/Ambition</div>
-<div class="barwrap"><div class="bar" style="width:100.0%;background:#c9981f">₹17,999,208 / 1.8 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:100.0%;background:#c9981f"></div></div>
+<div class="barval">₹17,999,208 / 1.8 Cr</div>
 <div class="mets"><b>22.9%</b> spend · 250 ads · CTR <b>1.314%</b> · CAC <b>₹817</b> · stop <b>6.9</b><span class="go">breakdown →</span></div></a><a class="brow t3 reveal" href="atglance.html#aspiration"><div class="en"><span class="rankbadge">2</span><span class="swatch" style="background:#0d6e5f"></span>Aspiration</div>
-<div class="barwrap"><div class="bar" style="width:67.0%;background:#0d6e5f">₹12,054,547 / 1.2 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:67.0%;background:#0d6e5f"></div></div>
+<div class="barval">₹12,054,547 / 1.2 Cr</div>
 <div class="mets"><b>15.3%</b> spend · 149 ads · CTR <b>0.897%</b> · CAC <b>₹815</b> · stop <b>6.1</b><span class="go">breakdown →</span></div></a><a class="brow t3 reveal" href="atglance.html#hope-optimism"><div class="en"><span class="rankbadge">3</span><span class="swatch" style="background:#2f8f6f"></span>Hope/Optimism</div>
-<div class="barwrap"><div class="bar" style="width:64.4%;background:#2f8f6f">₹11,593,840 / 1.2 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:64.4%;background:#2f8f6f"></div></div>
+<div class="barval">₹11,593,840 / 1.2 Cr</div>
 <div class="mets"><b>14.7%</b> spend · 192 ads · CTR <b>1.276%</b> · CAC <b>₹1003</b> · stop <b>5.7</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#fear-anxiety"><div class="en"><span class="rankbadge">4</span><span class="swatch" style="background:#b23a2e"></span>Fear/Anxiety</div>
-<div class="barwrap"><div class="bar" style="width:55.6%;background:#b23a2e">₹10,005,768 / 1.0 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:55.6%;background:#b23a2e"></div></div>
+<div class="barval">₹10,005,768 / 1.0 Cr</div>
 <div class="mets"><b>12.7%</b> spend · 132 ads · CTR <b>1.068%</b> · CAC <b>₹861</b> · stop <b>7.0</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#shame-embarrassment"><div class="en"><span class="rankbadge">5</span><span class="swatch" style="background:#a8642a"></span>Shame/Embarrassment</div>
-<div class="barwrap"><div class="bar" style="width:44.8%;background:#a8642a">₹8,057,487 / 0.8 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:44.8%;background:#a8642a"></div></div>
+<div class="barval">₹8,057,487 / 0.8 Cr</div>
 <div class="mets"><b>10.2%</b> spend · 111 ads · CTR <b>0.672%</b> · CAC <b>₹1113</b> · stop <b>6.3</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#belonging-family"><div class="en"><span class="rankbadge">6</span><span class="swatch" style="background:#7a5ea8"></span>Belonging/Family</div>
-<div class="barwrap"><div class="bar" style="width:38.4%;background:#7a5ea8">₹6,920,240 / 0.7 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:38.4%;background:#7a5ea8"></div></div>
+<div class="barval">₹6,920,240 / 0.7 Cr</div>
 <div class="mets"><b>8.8%</b> spend · 113 ads · CTR <b>0.929%</b> · CAC <b>₹862</b> · stop <b>5.9</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#pride-status"><div class="en"><span class="rankbadge">7</span><span class="swatch" style="background:#c06a2a"></span>Pride/Status</div>
-<div class="barwrap"><div class="bar" style="width:25.8%;background:#c06a2a">₹4,650,951 / 0.5 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:25.8%;background:#c06a2a"></div></div>
+<div class="barval">₹4,650,951 / 0.5 Cr</div>
 <div class="mets"><b>5.9%</b> spend · 66 ads · CTR <b>1.117%</b> · CAC <b>₹799</b> · stop <b>6.5</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#relief-security"><div class="en"><span class="rankbadge">8</span><span class="swatch" style="background:#3a8aa0"></span>Relief/Security</div>
-<div class="barwrap"><div class="bar" style="width:21.9%;background:#3a8aa0">₹3,947,127 / 0.4 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:21.9%;background:#3a8aa0"></div></div>
+<div class="barval">₹3,947,127 / 0.4 Cr</div>
 <div class="mets"><b>5.0%</b> spend · 63 ads · CTR <b>0.804%</b> · CAC <b>₹635</b> · stop <b>6.1</b><span class="go">breakdown →</span></div></a><a class="brow reveal" href="atglance.html#regret-loss-aversion"><div class="en"><span class="rankbadge">9</span><span class="swatch" style="background:#8a5a3a"></span>Regret/Loss-Aversion</div>
-<div class="barwrap"><div class="bar" style="width:19.0%;background:#8a5a3a">₹3,426,999 / 0.3 Cr</div></div>
+<div class="barwrap"><div class="bar" style="width:19.0%;background:#8a5a3a"></div></div>
+<div class="barval">₹3,426,999 / 0.3 Cr</div>
 <div class="mets"><b>4.4%</b> spend · 62 ads · CTR <b>1.660%</b> · CAC <b>₹1291</b> · stop <b>6.8</b><span class="go">breakdown →</span></div></a><div class="mets" style="text-align:center;margin-top:18px"><a href="atglance.html" style="color:var(--coral);font-family:'JetBrains Mono',monospace;font-size:13px">See all 9 emotion breakdowns at a glance →</a></div></section><footer class="reveal">Bachatt Creative Intelligence · top 1138 unique creatives by spend (non-story excluded) · transcript + frame grounded · window Oct 2025–Jun 2026 · <a href="explore.html" style="color:var(--coral)">Explore &amp; filter all creatives →</a></footer></div>
 <script>
 (function(){var b=document.getElementById('themeToggle');if(!b)return;function ic(){return document.documentElement.getAttribute('data-theme')==='dark'?'☀':'🌙';}b.textContent=ic();b.onclick=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}b.textContent=ic();};})();

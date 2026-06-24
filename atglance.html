@@ -56,13 +56,14 @@ h1 em{font-style:italic;color:var(--teal)}
 .tracksub{margin:6px 0 0;color:var(--mut);max-width:64ch;font-size:16px}
 .tracksub b{color:var(--ink);font-weight:600}
 .board{margin-top:28px;display:grid;gap:10px}
-.brow{display:grid;grid-template-columns:210px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
+.brow{display:grid;grid-template-columns:200px 1fr 160px auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
 .brow:hover{transform:translateX(4px);border-color:var(--teal)}
 .brow.t3{background:var(--card)}
 .brow .en{font-family:'Space Grotesk';font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px;color:var(--ink)}
 .swatch{width:11px;height:11px;border-radius:3px;flex:none}
 .brow .barwrap{position:relative;height:26px;border-radius:6px;background:var(--paper-2);overflow:hidden}
-.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px;display:flex;align-items:center;padding-left:10px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+.brow .bar{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.brow .barval{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;color:var(--teal-deep);white-space:nowrap;text-align:right}
 .brow .mets{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);text-align:right;white-space:nowrap}
 .brow .mets b{color:var(--teal-deep)}
 .brow .go{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--coral);margin-left:6px}
@@ -153,7 +154,7 @@ h1 em{font-style:italic;color:var(--teal)}
 footer{padding:48px 0 80px;color:var(--mut);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center;letter-spacing:.04em}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
-@media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
+@media (max-width:640px){.brow{grid-template-columns:120px 1fr}.brow .barval{grid-column:1/-1;text-align:left}.brow .mets{grid-column:1/-1;text-align:left}.fglabel{width:auto}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
 .navlogoimg{height:24px;width:auto;background:#fff;padding:4px 7px;border-radius:7px;display:block}.navtoggle{font-size:15px;line-height:1;background:transparent;border:1px solid var(--line);color:var(--teal-deep);width:34px;height:34px;border-radius:8px;cursor:pointer;display:inline-grid;place-items:center}.navtoggle:hover{background:var(--paper-2)}.navcompetitor{background:transparent;border:1px solid var(--gold);color:var(--gold) !important}.navcompetitor:hover{background:var(--gold);color:#fff !important}.herologo{height:42px;width:auto;background:#fff;padding:5px 9px;border-radius:10px;display:block}[data-theme=dark] .lab.fmt{background:#2a2540;color:#e6c878;border-color:#3a3358}[data-theme=dark] .lab.hook{background:#3a2630;color:#ffb59c}[data-theme=dark] .topnav::after{opacity:.5}[data-theme=dark] .cursor-dot,[data-theme=dark] .cursor-ring{mix-blend-mode:normal}
 </style></head><body><script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light")}catch(e){}</script><div class="field" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="progress" id="prog"></div><div class="cursor-ring" id="cring"></div><div class="cursor-dot" id="cdot"></div><nav class="topnav"><div class="navwrap"><a class="navbrand" href="index.html"><img class="navlogoimg" src="logo.png" alt="Bachatt"><span class="bt">Karega <span class="gn">Bharat</span></span></a><div class="navlinks"><a href="index.html#scoreboard">Scoreboard</a><a class="on" href="atglance.html">At a Glance</a><a class="" href="top10.html">Top 10</a><a class="" href="creators.html">Creators</a><a class="" href="definitions.html">Definitions</a><a class="navcta" href="explore.html">Explore all creatives &rarr;</a><a class="navcompetitor" href="https://sameerkashayapiitk.github.io/bachatt-competitor-intel/" title="competitor creative intelligence">Competitor Intel &#8599;</a><button class="navtoggle" id="themeToggle" aria-label="toggle dark mode" title="dark mode">🌙</button></div></div></nav><div class="wrap"><header style="padding:34px 0 6px">
